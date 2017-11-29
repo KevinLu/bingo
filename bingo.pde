@@ -16,5 +16,19 @@ void setup () {
   }
 }
 void draw () {
+  background(255);
+  int grid_x = 130;
+  while (grid_x < 590) {
+    line(grid_x, 130, grid_x, 530);
+    grid_x = grid_x + 80;
+  }
+  int grid_y = 130;
+  while (grid_y < 590) {
+    line(130, grid_y, 530, grid_y);
+    grid_y = grid_y + 80;
+    fill(0);
+    textSize(16);
+    text("Bingo", width/2, 50);
+  }
   
 }
