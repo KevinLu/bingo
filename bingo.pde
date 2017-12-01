@@ -1,18 +1,26 @@
-int[] b = new int[5];
-int[] i = new int[5];
-int[] n = new int[5];
-int[] g = new int[5];
-int[] o = new int[5];
+IntList B = new IntList(5);
+IntList I = new IntList(5);
+IntList N = new IntList(5);
+IntList G = new IntList(5);
+IntList O = new IntList(5);
 void settings () {
   size(600, 600);
 }
 void setup () {
-  for (int x = 0; x < 5; x++) {
-    b[x] = (int) random(1, 10);
-    i[x] = (int) random(11, 20);
-    n[x] = (int) random(21, 30);
-    g[x] = (int) random(31, 40);
-    o[x] = (int) random(41, 50);
+  for (int x = 0; x != 11; B.append(++x)) {
+    B.shuffle();
+  }
+  for (int x = 10; x != 21; I.append(++x)) {
+    I.shuffle();
+  }
+  for (int x = 20; x != 31; N.append(++x)) {
+    N.shuffle();
+  }
+  for (int x = 30; x != 41; G.append(++x)) {
+    G.shuffle();
+  }
+  for (int x = 40; x != 51; O.append(++x)) {
+    O.shuffle();
   }
 }
 void debug() {
@@ -34,27 +42,51 @@ void draw () {
     fill(0);
     textSize(32);
     textAlign(CENTER);
-    text("Binary Bingo", width/2, 75);
+    text("Binary Bingo", width/2, 25);
+  }
+  int bingoOffset = 60;
+  for (int i = 0; i < 5; i++) {
+    bingoOffset += 80;
+    text("B", bingoOffset, 85);
+    bingoOffset += 80;
+    text("I", bingoOffset, 85);
+    bingoOffset += 80;
+    text("N", bingoOffset, 85);
+    bingoOffset += 80;
+    text("G", bingoOffset, 85);
+    bingoOffset += 80;
+    text("O", bingoOffset, 85);
+    bingoOffset += 80;
   }
   int textX = 140;
   int textY = 150;
   for (int i = 0; i < 5; i++) {
-    text(b[i], 140, textY);
+    int b = B.get(i);
+    text(b, 140, textY);
     textY += 80;
   }
   textY = 150;
-    for (int j = 0; j < 5; j++) {
-    text(i[j], 220, textY);
+  for (int j = 0; j < 5; j++) {
+    int i = I.get(j);
+    text(i, 220, textY);
     textY += 80;
   }
   textY = 150;
-    for (int i = 0; i < 5; i++) {
-    text(n[i], 300, textY);
+  for (int j = 0; j < 5; j++) {
+    int n = N.get(j);
+    text(n, 300, textY);
     textY += 80;
   }
   textY = 150;
-    for (int i = 0; i < 5; i++) {
-    text(g[i], 380, textY);
+  for (int j = 0; j < 5; j++) {
+    int g = G.get(j);
+    text(g, 380, textY);
+    textY += 80;
+  }
+  textY = 150;
+  for (int j = 0; j < 5; j++) {
+    int o = O.get(j);
+    text(o, 460, textY);
     textY += 80;
   }
 }
