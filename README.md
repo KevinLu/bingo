@@ -9,7 +9,7 @@ Assignment #3
 * ~~Basic interface.~~
 * Add button for regenerating numbers.
 * Implement output to PDF function.
-* Implement "FREE" option in the center.
+* ~~Implement "FREE" option in the center.~~
 * Add button to toggle between various number systems.
 * Off screen output.
 
