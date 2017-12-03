@@ -24,8 +24,17 @@ void setup () {
   }
 }
 void debug() {
+  fill(0);
   textSize(12);
   text("X, Y: " + mouseX + " " + mouseY, 40, 12);
+}
+void free() {
+  fill(0);
+  rect(260, 260, 80, 80);
+  fill(255);
+  textAlign(CENTER);
+  textSize(25);
+  text("FREE", 300, 310);
 }
 void draw () {
   background(255);
@@ -89,4 +98,5 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
+  free(); //Add "FREE" tile in the centre.
 }
