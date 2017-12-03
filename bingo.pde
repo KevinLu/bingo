@@ -7,6 +7,11 @@ void settings () {
   size(600, 600);
 }
 void setup () {
+  //Create Settings window
+  String[] args = {"Settings"};
+  Settings sa = new Settings();
+  PApplet.runSketch(args, sa);
+  
   for (int x = 0; x != 11; B.append(++x)) {
     B.shuffle();
   }
@@ -99,4 +104,15 @@ void draw () {
     textY += 80;
   }
   free(); //Add "FREE" tile in the centre.
+}
+public class Settings extends PApplet {
+ 
+  public void settings() {
+    size(300, 400);
+  }
+  public void draw() {
+    background(255);
+    fill(0);
+    text("settings go here!", 50, 50);
+  }
 }
