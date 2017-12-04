@@ -12,6 +12,9 @@ Assignment #3
 * ~~Implement "FREE" option in the center.~~
 * Add button to toggle between various number systems.
 * Off screen output.
+* outputs the cards in a visually pleasing manner.
+* Can, if requested, generate more than one bingo card as required.
+* Can, if requested, generate more than one file's worth of cards.
 
 ## Getting Started
 
