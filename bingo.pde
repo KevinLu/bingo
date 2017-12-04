@@ -7,6 +7,7 @@ void settings () {
   size(600, 600);
 }
 void setup () {
+surface.setResizable(true);
   //Create Settings window
   String[] args = {"Settings"};
   Settings sa = new Settings();
@@ -103,6 +104,7 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
+  
   free(); //Add "FREE" tile in the centre.
 }
 public class Settings extends PApplet {
@@ -113,6 +115,9 @@ public class Settings extends PApplet {
   public void draw() {
     background(255);
     fill(0);
-    text("settings go here!", 50, 50);
+    text("Bingo Options", 100, 20);
+    rect(43, 55, 95, 30);
+    fill(255);
+    text("Free in middle?", 50, 70);
   }
 }
