@@ -4,8 +4,6 @@ IntList N = new IntList(5);
 IntList G = new IntList(5);
 IntList O = new IntList(5);
 boolean middle = true;
-
-import processing.pdf.*;
 void settings () {
   size(600, 600);
 }
@@ -31,7 +29,6 @@ void setup () {
   for (int x = 40; x != 51; O.append(++x)) {
     O.shuffle();
   }
-  beginRecord(PDF, "Bingo.pdf"); 
 }
 void debug() {
   fill(0);
@@ -46,6 +43,30 @@ void free() {
     textAlign(CENTER);
     textSize(25);
     text("FREE", 300, 310);
+  }
+}
+void regen() {
+  //clear the IntLists to avoid duplicates
+  B.clear();
+  I.clear();
+  N.clear();
+  G.clear();
+  O.clear();
+  //shuffle the IntLists
+  for (int x = 0; x != 11; B.append(++x)) {
+    B.shuffle();
+  }
+  for (int x = 10; x != 21; I.append(++x)) {
+    I.shuffle();
+  }
+  for (int x = 20; x != 31; N.append(++x)) {
+    N.shuffle();
+  }
+  for (int x = 30; x != 41; G.append(++x)) {
+    G.shuffle();
+  }
+  for (int x = 40; x != 51; O.append(++x)) {
+    O.shuffle();
   }
 }
 void draw () {
@@ -120,6 +141,8 @@ public class Settings extends PApplet {
   }
   public void draw() {
     background(255);
+    fill(255);
+    rect(10, 175, 100, 20);//"REGENERATE"
     fill(0);
     textSize(20);
     text("Bingo Options", 90, 20);
@@ -127,11 +150,16 @@ public class Settings extends PApplet {
     text("Free in middle?", 10, 70);
     rect(10, 80, 50, 20);
     rect(90, 80, 50, 20);
+    rect(10, 140, 50, 20);
+    rect(90, 140, 50, 20);
     fill(255);
     text("Yes", 20, 95);
     text("No", 105, 95);
+    text("Yes", 20, 155);
+    text("No", 105, 155);
     fill(0);
-    text("Binary", 10,130);
+    text("Binary", 10, 130);
+    text("Regenerate", 15, 190);
     fill(255);
     rect(10, 320, 100, 30);
     fill(0);
@@ -151,9 +179,11 @@ public class Settings extends PApplet {
       rect(10, 320, 100, 30);
       endRecord();
     }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 175 && mouseY <= 195) {
+      regen();
+    }
     fill(0);
     textSize(12);
     text("X, Y: " + mouseX + " " + mouseY, 10, 12);
   }
 }
-
