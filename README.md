@@ -7,12 +7,12 @@ Assignment #3
 * ~~Create 5x5 grid for numbers.~~
 * ~~Implement random number generator and ensure there are no duplicates.~~
 * ~~Basic interface.~~
-* Add button for regenerating numbers.
-* Implement output to PDF function.
+* ~~Add button for regenerating numbers.~~
+* ~~Implement output to PDF function.~~
 * ~~Implement "FREE" option in the center.~~
 * Add button to toggle between various number systems.
 * Off screen output.
-* outputs the cards in a visually pleasing manner.
+* Output the cards in a visually pleasing manner.
 * Can, if requested, generate more than one bingo card as required.
 * Can, if requested, generate more than one file's worth of cards.
 
