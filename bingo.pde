@@ -37,9 +37,9 @@ void debug() {
 }
 void free() {
   if (middle) {
-    fill(0);
-    rect(260, 260, 80, 80);
     fill(255);
+    rect(260, 260, 80, 80);
+    fill(0);
     textAlign(CENTER);
     textSize(25);
     text("FREE", 300, 310);
