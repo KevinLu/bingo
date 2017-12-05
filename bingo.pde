@@ -133,17 +133,22 @@ public class Settings extends PApplet {
     fill(0);
     text("Binary", 10,130);
     fill(255);
-    rect(10, 180, 100, 30);
+    rect(10, 320, 100, 30);
     fill(0);
     textSize(16);
-    text("Create PDF", 15, 200);
+    text("Create PDF", 15, 340);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
+      fill(0);
+      rect(90, 80, 50, 20);
       middle = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 80 && mouseY <= 100) {
+      fill(0);
+      rect(10, 80, 50, 20);
       middle = true;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 180 && mouseY <= 210) {
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 320 && mouseY <= 350) {
+      rect(10, 320, 100, 30);
       endRecord();
     }
     fill(0);
