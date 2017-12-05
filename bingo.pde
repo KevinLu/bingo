@@ -76,14 +76,14 @@ void regen() {
   }
 }
 void binaryConvert() {
+  for (int i = 0; i < 5; i++) {
+    Bbinary[i] = binary((byte) B.get(i), 5);
+    Ibinary[i] = binary((byte) I.get(i), 5);
+    Nbinary[i] = binary((byte) N.get(i), 5);
+    Gbinary[i] = binary((byte) G.get(i), 5);
+    Obinary[i] = binary((byte) O.get(i), 5);
+  }
   if (binaryConverted) {
-    for (int i = 0; i < 5; i++) {
-      Bbinary[i] = binary((byte)random(0, 11));
-      Ibinary[i] = binary((byte)random(11, 21));
-      Nbinary[i] = binary((byte)random(21, 31));
-      Gbinary[i] = binary((byte)random(31, 41));
-      Obinary[i] = binary((byte)random(41, 51));
-    }
     background(255);
     debug();
     int grid_x = 100;
@@ -116,6 +116,7 @@ void binaryConvert() {
     }
     int textX = 140;
     int textY = 150;
+    textSize(24);
     for (int i = 0; i < 5; i++) {
       text(Bbinary[i], 140, textY);
       textY += 80;
@@ -259,6 +260,9 @@ public class Settings extends PApplet {
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
       binaryConverted = true;
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 140 && mouseY <= 160) {
+      binaryConverted = false;
     }
     fill(0);
     textSize(12);
