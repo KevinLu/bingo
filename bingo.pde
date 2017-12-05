@@ -4,6 +4,8 @@ IntList N = new IntList(5);
 IntList G = new IntList(5);
 IntList O = new IntList(5);
 boolean middle = true;
+
+import processing.pdf.*;
 void settings () {
   size(600, 600);
 }
@@ -29,6 +31,7 @@ void setup () {
   for (int x = 40; x != 51; O.append(++x)) {
     O.shuffle();
   }
+  beginRecord(PDF, "Bingo.pdf"); 
 }
 void debug() {
   fill(0);
@@ -129,11 +132,19 @@ public class Settings extends PApplet {
     text("No", 105, 95);
     fill(0);
     text("Binary", 10,130);
+    fill(255);
+    rect(10, 180, 100, 30);
+    fill(0);
+    textSize(16);
+    text("Create PDF", 15, 200);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
       middle = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 80 && mouseY <= 100) {
       middle = true;
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 180 && mouseY <= 210) {
+      endRecord();
     }
     fill(0);
     textSize(12);
