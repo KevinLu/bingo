@@ -3,7 +3,13 @@ IntList I = new IntList(5);
 IntList N = new IntList(5);
 IntList G = new IntList(5);
 IntList O = new IntList(5);
+String[] Bbinary = new String[5];
+String[] Ibinary = new String[5];
+String[] Nbinary = new String[5];
+String[] Gbinary = new String[5];
+String[] Obinary = new String[5];
 boolean middle = true;
+boolean binaryConverted = false;
 void settings () {
   size(600, 600);
 }
@@ -69,6 +75,75 @@ void regen() {
     O.shuffle();
   }
 }
+void binaryConvert() {
+  if (binaryConverted) {
+    for (int i = 0; i < 5; i++) {
+      Bbinary[i] = binary((byte)random(0, 11));
+      Ibinary[i] = binary((byte)random(11, 21));
+      Nbinary[i] = binary((byte)random(21, 31));
+      Gbinary[i] = binary((byte)random(31, 41));
+      Obinary[i] = binary((byte)random(41, 51));
+    }
+    background(255);
+    debug();
+    int grid_x = 100;
+    while (grid_x < 580) {
+      line(grid_x, 100, grid_x, 500);
+      grid_x = grid_x + 80;
+    }
+    int grid_y = 100;
+    while (grid_y < 580) {
+      line(100, grid_y, 500, grid_y);
+      grid_y = grid_y + 80;
+      fill(0);
+      textSize(32);
+      textAlign(CENTER);
+      text("Binary Bingo", width/2, 25);
+    }
+    int bingoOffset = 60;
+    for (int i = 0; i < 5; i++) {
+      bingoOffset += 80;
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 80;
+    }
+    int textX = 140;
+    int textY = 150;
+    for (int i = 0; i < 5; i++) {
+      text(Bbinary[i], 140, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ibinary[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nbinary[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Gbinary[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Obinary[j], 460, textY);
+      textY += 80;
+    }
+
+    free(); //Add "FREE" tile in the centre.
+  }
+}
 void draw () {
   background(255);
   debug();
@@ -131,7 +206,7 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
-
+  binaryConvert();
   free(); //Add "FREE" tile in the centre.
 }
 public class Settings extends PApplet {
@@ -181,6 +256,9 @@ public class Settings extends PApplet {
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 175 && mouseY <= 195) {
       regen();
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
+      binaryConverted = true;
     }
     fill(0);
     textSize(12);
