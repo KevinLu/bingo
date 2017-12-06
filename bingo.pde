@@ -34,6 +34,7 @@ boolean binaryConverted = false;
 boolean hexaConverted = false;
 boolean octalConverted = false;
 
+float c = 0;
 import processing.pdf.*;
 void settings () {
   size(600, 600);
@@ -154,6 +155,28 @@ void regen() {
   for (int x = 200; x != 250; Ohex.append(++x)) {
     Ohex.shuffle();
   }
+  //clear the IntLists to avoid duplicates
+  Boct.clear();
+  Ioct.clear();
+  Noct.clear();
+  Goct.clear();
+  Ooct.clear();
+  //shuffle the IntLists
+  for (int x = 0; x != 30; Boct.append(++x)) {
+    Boct.shuffle();
+  }
+  for (int x = 30; x != 60; Ioct.append(++x)) {
+    Ioct.shuffle();
+  }
+  for (int x = 60; x != 90; Noct.append(++x)) {
+    Noct.shuffle();
+  }
+  for (int x = 90; x != 120; Goct.append(++x)) {
+    Goct.shuffle();
+  }
+  for (int x = 120; x != 500; Ooct.append(++x)) {
+    Ooct.shuffle();
+  }
 }
 void octalConvert() {
   for (int i = 0; i < 5; i++) {
@@ -194,31 +217,30 @@ void octalConvert() {
       text("O", bingoOffset, 85);
       bingoOffset += 80;
     }
-    int textX = 140;
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
-      text(Bhexa[i], 140, textY);
+      text(Bocta[i], 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ihexa[j], 220, textY);
+      text(Iocta[j], 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Nhexa[j], 300, textY);
+      text(Nocta[j], 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ghexa[j], 380, textY);
+      text(Gocta[j], 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ohexa[j], 460, textY);
+      text(Oocta[j], 460, textY);
       textY += 80;
     }
 
@@ -264,7 +286,6 @@ void hexaConvert() {
       text("O", bingoOffset, 85);
       bingoOffset += 80;
     }
-    int textX = 140;
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
@@ -335,7 +356,6 @@ void binaryConvert() {
       text("O", bingoOffset, 85);
       bingoOffset += 80;
     }
-    int textX = 140;
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
@@ -397,7 +417,6 @@ void draw () {
     text("O", bingoOffset, 85);
     bingoOffset += 80;
   }
-  int textX = 140;
   int textY = 150;
   for (int i = 0; i < 5; i++) {
     int b = B.get(i);
@@ -428,6 +447,7 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
+  octalConvert();
   hexaConvert();
   binaryConvert();
   free(); //Add "FREE" tile in the centre.
@@ -470,7 +490,6 @@ public class Settings extends PApplet {
     fill(255);
     rect(10, 320, 100, 30);
     fill(0);
-    textSize(16);
     text("Create PDF", 15, 340);
     text("Hexadecimal", 10, 230);
     text("Octal", 10, 290);
@@ -515,13 +534,57 @@ public class Settings extends PApplet {
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 295 && mouseY <= 315) {
       fill(0);
-      rect(90, 235, 50, 20);
+      rect(10, 295, 50, 20);
       octalConverted = true;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 235 && mouseY <= 255) {
+    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 295 && mouseY <= 315) {
       fill(0);
-      rect(90, 235, 50, 20);
+      rect(90, 295, 50, 20);
       octalConverted = false;
+    }
+    if (middle) {
+      fill(0);
+      rect(10, 80, 50, 20);// free button "yes" option
+      fill(255);
+      text("Yes", 20, 95);
+    } else if (!middle) {
+      fill(0);
+      rect(90, 80, 50, 20);//free button "no" option
+      fill(255);
+      text("No", 105, 95);
+    }
+    if (binaryConverted) {
+      fill(0);
+      rect(10, 140, 50, 20);// binary "yes" button
+      fill(255);
+      text("Yes", 20, 155);
+    } else if (!binaryConverted) {
+      fill(0);
+      rect(90, 140, 50, 20);// binary "no" button
+      fill(255);
+      text("No", 105, 155);
+    }
+    if (hexaConverted) {
+      fill(0);
+      rect(10, 235, 50, 20);//hexa "yes" button
+      fill(255);
+      text("Yes", 20, 250);
+    } else if (!hexaConverted) {
+      fill(0);
+      rect(90, 235, 50, 20);//hexa "no" button
+      fill(255);
+      text("No", 105, 250);
+    }
+    if (octalConverted) {
+      fill(0);
+      rect(10, 295, 50, 20);//octal "yes" button
+      fill(255);
+      text("Yes", 20, 310);
+    } else if (!octalConverted) {
+      fill(0);
+      rect(90, 295, 50, 20);//octal "no" button
+      fill(255);
+      text("No", 105, 310);
     }
     fill(0);
     textSize(12);
