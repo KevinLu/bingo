@@ -3,6 +3,16 @@ IntList I = new IntList(5);
 IntList N = new IntList(5);
 IntList G = new IntList(5);
 IntList O = new IntList(5);
+IntList Bhex = new IntList(5);
+IntList Ihex = new IntList(5);
+IntList Nhex = new IntList(5);
+IntList Ghex = new IntList(5);
+IntList Ohex = new IntList(5);
+IntList Boct = new IntList(5);
+IntList Ioct = new IntList(5);
+IntList Noct = new IntList(5);
+IntList Goct = new IntList(5);
+IntList Ooct = new IntList(5);
 String[] Bbinary = new String[5];
 String[] Ibinary = new String[5];
 String[] Nbinary = new String[5];
@@ -13,10 +23,16 @@ String[] Ihexa = new String[5];
 String[] Nhexa = new String[5];
 String[] Ghexa = new String[5];
 String[] Ohexa = new String[5];
+String[] Bocta = new String[5];
+String[] Iocta = new String[5];
+String[] Nocta = new String[5];
+String[] Gocta = new String[5];
+String[] Oocta = new String[5];
 
 boolean middle = true;
 boolean binaryConverted = false;
 boolean hexaConverted = false;
+boolean octalConverted = false;
 
 import processing.pdf.*;
 void settings () {
@@ -28,21 +44,53 @@ void setup () {
   String[] args = {"Settings"};
   Settings sa = new Settings();
   PApplet.runSketch(args, sa);
-
-  for (int x = 0; x != 11; B.append(++x)) {
+  //Decimals
+  for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
   }
-  for (int x = 10; x != 21; I.append(++x)) {
+  for (int x = 15; x != 30; I.append(++x)) {
     I.shuffle();
   }
-  for (int x = 20; x != 31; N.append(++x)) {
+  for (int x = 30; x != 60; N.append(++x)) {
     N.shuffle();
   }
-  for (int x = 30; x != 41; G.append(++x)) {
+  for (int x = 60; x != 90; G.append(++x)) {
     G.shuffle();
   }
-  for (int x = 40; x != 51; O.append(++x)) {
+  for (int x = 90; x != 120; O.append(++x)) {
     O.shuffle();
+  }
+  //Hexadecimals
+  for (int x = 0; x != 50; Bhex.append(++x)) {
+    Bhex.shuffle();
+  }
+  for (int x = 50; x != 100; Ihex.append(++x)) {
+    Ihex.shuffle();
+  }
+  for (int x = 100; x != 150; Nhex.append(++x)) {
+    Nhex.shuffle();
+  }
+  for (int x = 150; x != 200; Ghex.append(++x)) {
+    Ghex.shuffle();
+  }
+  for (int x = 200; x != 250; Ohex.append(++x)) {
+    Ohex.shuffle();
+  }
+  //Octals
+  for (int x = 0; x != 30; Boct.append(++x)) {
+    Boct.shuffle();
+  }
+  for (int x = 30; x != 60; Ioct.append(++x)) {
+    Ioct.shuffle();
+  }
+  for (int x = 60; x != 90; Noct.append(++x)) {
+    Noct.shuffle();
+  }
+  for (int x = 90; x != 120; Goct.append(++x)) {
+    Goct.shuffle();
+  }
+  for (int x = 120; x != 500; Ooct.append(++x)) {
+    Ooct.shuffle();
   }
   beginRecord(PDF, "bingo-####.pdf");
 }
@@ -69,30 +117,121 @@ void regen() {
   G.clear();
   O.clear();
   //shuffle the IntLists
-  for (int x = 0; x != 11; B.append(++x)) {
+  for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
   }
-  for (int x = 10; x != 21; I.append(++x)) {
+  for (int x = 15; x != 30; I.append(++x)) {
     I.shuffle();
   }
-  for (int x = 20; x != 31; N.append(++x)) {
+  for (int x = 30; x != 60; N.append(++x)) {
     N.shuffle();
   }
-  for (int x = 30; x != 41; G.append(++x)) {
+  for (int x = 60; x != 90; G.append(++x)) {
     G.shuffle();
   }
-  for (int x = 40; x != 51; O.append(++x)) {
+  for (int x = 90; x != 120; O.append(++x)) {
     O.shuffle();
   }
+  //clear the IntLists to avoid duplicates
+  Bhex.clear();
+  Ihex.clear();
+  Nhex.clear();
+  Ghex.clear();
+  Ohex.clear();
+  //shuffle the IntLists
+  for (int x = 0; x != 50; Bhex.append(++x)) {
+    Bhex.shuffle();
+  }
+  for (int x = 50; x != 100; Ihex.append(++x)) {
+    Ihex.shuffle();
+  }
+  for (int x = 100; x != 150; Nhex.append(++x)) {
+    Nhex.shuffle();
+  }
+  for (int x = 150; x != 200; Ghex.append(++x)) {
+    Ghex.shuffle();
+  }
+  for (int x = 200; x != 250; Ohex.append(++x)) {
+    Ohex.shuffle();
+  }
 }
+void octalConvert() {
+  for (int i = 0; i < 5; i++) {
+    Bocta[i] = Integer.toOctalString(Boct.get(i));
+    Iocta[i] = Integer.toOctalString(Ioct.get(i));
+    Nocta[i] = Integer.toOctalString(Noct.get(i));
+    Gocta[i] = Integer.toOctalString(Goct.get(i));
+    Oocta[i] = Integer.toOctalString(Ooct.get(i));
+  }
+  if (octalConverted) {
+    background(255);
+    debug();
+    int grid_x = 100;
+    while (grid_x < 580) {
+      line(grid_x, 100, grid_x, 500);
+      grid_x = grid_x + 80;
+    }
+    int grid_y = 100;
+    while (grid_y < 580) {
+      line(100, grid_y, 500, grid_y);
+      grid_y = grid_y + 80;
+      fill(0);
+      textSize(32);
+      textAlign(CENTER);
+      text("Octal Bingo", width/2, 25);
+    }
+    int bingoOffset = 60;
+    for (int i = 0; i < 5; i++) {
+      bingoOffset += 80;
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 80;
+    }
+    int textX = 140;
+    int textY = 150;
+    textSize(24);
+    for (int i = 0; i < 5; i++) {
+      text(Bhexa[i], 140, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ihexa[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nhexa[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ghexa[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ohexa[j], 460, textY);
+      textY += 80;
+    }
 
+    free(); //Add "FREE" tile in the centre.
+  }
+}
 void hexaConvert() {
   for (int i = 0; i < 5; i++) {
-    Bhexa[i] = hex((byte) B.get(i), 4);
-    Ihexa[i] = hex((byte) I.get(i), 4);
-    Nhexa[i] = hex((byte) N.get(i), 4);
-    Ghexa[i] = hex((byte) G.get(i), 4);
-    Ohexa[i] = hex((byte) O.get(i), 4);
+    Bhexa[i] = hex((byte) Bhex.get(i));
+    Ihexa[i] = hex((byte) Ihex.get(i));
+    Nhexa[i] = hex((byte) Nhex.get(i));
+    Ghexa[i] = hex((byte) Ghex.get(i));
+    Ohexa[i] = hex((byte) Ohex.get(i));
   }
   if (hexaConverted) {
     background(255);
@@ -109,7 +248,7 @@ void hexaConvert() {
       fill(0);
       textSize(32);
       textAlign(CENTER);
-      text("Binary Bingo", width/2, 25);
+      text("Hexadecimal Bingo", width/2, 25);
     }
     int bingoOffset = 60;
     for (int i = 0; i < 5; i++) {
@@ -242,7 +381,7 @@ void draw () {
     fill(0);
     textSize(32);
     textAlign(CENTER);
-    text("Binary Bingo", width/2, 25);
+    text("Decimal Bingo", width/2, 25);
   }
   int bingoOffset = 60;
   for (int i = 0; i < 5; i++) {
@@ -312,8 +451,10 @@ public class Settings extends PApplet {
     rect(90, 80, 50, 20);//free button "no" option
     rect(10, 140, 50, 20);// binary "yes" button
     rect(90, 140, 50, 20);// binary "no" button
-    rect(10, 235, 50, 20);
-    rect(90, 235, 50, 20);
+    rect(10, 235, 50, 20);//hexa "yes" button
+    rect(90, 235, 50, 20);//hexa "no" button
+    rect(10, 295, 50, 20);//octal "yes" button
+    rect(90, 295, 50, 20);//octal "no" button
     fill(0);
     text("Yes", 20, 95);
     text("No", 105, 95);
@@ -321,6 +462,8 @@ public class Settings extends PApplet {
     text("No", 105, 155);
     text("Yes", 20, 250);
     text("No", 105, 250);
+    text("Yes", 20, 310);
+    text("No", 105, 310);
     fill(0);
     text("Binary", 10, 130);
     text("Regenerate Numbers", 15, 200);
@@ -330,6 +473,7 @@ public class Settings extends PApplet {
     textSize(16);
     text("Create PDF", 15, 340);
     text("Hexadecimal", 10, 230);
+    text("Octal", 10, 290);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
       fill(0);
       rect(90, 80, 50, 20);
@@ -369,9 +513,18 @@ public class Settings extends PApplet {
       rect(90, 235, 50, 20);
       hexaConverted = false;
     }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 295 && mouseY <= 315) {
+      fill(0);
+      rect(90, 235, 50, 20);
+      octalConverted = true;
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 235 && mouseY <= 255) {
+      fill(0);
+      rect(90, 235, 50, 20);
+      octalConverted = false;
+    }
     fill(0);
     textSize(12);
     text("X, Y: " + mouseX + " " + mouseY, 10, 12);
   }
 }
-
