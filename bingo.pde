@@ -8,8 +8,17 @@ String[] Ibinary = new String[5];
 String[] Nbinary = new String[5];
 String[] Gbinary = new String[5];
 String[] Obinary = new String[5];
+String[] Bhexa = new String[5];
+String[] Ihexa = new String[5];
+String[] Nhexa = new String[5];
+String[] Ghexa = new String[5];
+String[] Ohexa = new String[5];
+
 boolean middle = true;
 boolean binaryConverted = false;
+boolean hexaConverted = false;
+
+import processing.pdf.*;
 void settings () {
   size(600, 600);
 }
@@ -35,6 +44,7 @@ void setup () {
   for (int x = 40; x != 51; O.append(++x)) {
     O.shuffle();
   }
+  beginRecord(PDF, "bingo-####.pdf");
 }
 void debug() {
   fill(0);
@@ -75,6 +85,78 @@ void regen() {
     O.shuffle();
   }
 }
+
+void hexaConvert() {
+  for (int i = 0; i < 5; i++) {
+    Bhexa[i] = hex((byte) B.get(i), 4);
+    Ihexa[i] = hex((byte) I.get(i), 4);
+    Nhexa[i] = hex((byte) N.get(i), 4);
+    Ghexa[i] = hex((byte) G.get(i), 4);
+    Ohexa[i] = hex((byte) O.get(i), 4);
+  }
+  if (hexaConverted) {
+    background(255);
+    debug();
+    int grid_x = 100;
+    while (grid_x < 580) {
+      line(grid_x, 100, grid_x, 500);
+      grid_x = grid_x + 80;
+    }
+    int grid_y = 100;
+    while (grid_y < 580) {
+      line(100, grid_y, 500, grid_y);
+      grid_y = grid_y + 80;
+      fill(0);
+      textSize(32);
+      textAlign(CENTER);
+      text("Binary Bingo", width/2, 25);
+    }
+    int bingoOffset = 60;
+    for (int i = 0; i < 5; i++) {
+      bingoOffset += 80;
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 80;
+    }
+    int textX = 140;
+    int textY = 150;
+    textSize(24);
+    for (int i = 0; i < 5; i++) {
+      text(Bhexa[i], 140, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ihexa[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nhexa[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ghexa[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ohexa[j], 460, textY);
+      textY += 80;
+    }
+
+    free(); //Add "FREE" tile in the centre.
+  }
+}
+
 void binaryConvert() {
   for (int i = 0; i < 5; i++) {
     Bbinary[i] = binary((byte) B.get(i), 5);
@@ -207,6 +289,7 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
+  hexaConvert();
   binaryConvert();
   free(); //Add "FREE" tile in the centre.
 }
@@ -218,29 +301,35 @@ public class Settings extends PApplet {
   public void draw() {
     background(255);
     fill(255);
-    rect(10, 175, 100, 20);//"REGENERATE"
+    rect(10, 185, 170, 20);//"REGENERATE"
     fill(0);
     textSize(20);
     text("Bingo Options", 90, 20);
     textSize(16);
     text("Free in middle?", 10, 70);
-    rect(10, 80, 50, 20);
-    rect(90, 80, 50, 20);
-    rect(10, 140, 50, 20);
-    rect(90, 140, 50, 20);
     fill(255);
+    rect(10, 80, 50, 20);// free button "yes" option
+    rect(90, 80, 50, 20);//free button "no" option
+    rect(10, 140, 50, 20);// binary "yes" button
+    rect(90, 140, 50, 20);// binary "no" button
+    rect(10, 235, 50, 20);
+    rect(90, 235, 50, 20);
+    fill(0);
     text("Yes", 20, 95);
     text("No", 105, 95);
     text("Yes", 20, 155);
     text("No", 105, 155);
+    text("Yes", 20, 250);
+    text("No", 105, 250);
     fill(0);
     text("Binary", 10, 130);
-    text("Regenerate", 15, 190);
+    text("Regenerate Numbers", 15, 200);
     fill(255);
     rect(10, 320, 100, 30);
     fill(0);
     textSize(16);
     text("Create PDF", 15, 340);
+    text("Hexadecimal", 10, 230);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
       fill(0);
       rect(90, 80, 50, 20);
@@ -255,17 +344,34 @@ public class Settings extends PApplet {
       rect(10, 320, 100, 30);
       endRecord();
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 175 && mouseY <= 195) {
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
+      fill(0);
+      rect(10, 185, 170, 20);
       regen();
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
+      fill(0);
+      rect(10, 140, 50, 20);
       binaryConverted = true;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 140 && mouseY <= 160) {
+      fill(0);
+      rect(90, 140, 50, 20);
       binaryConverted = false;
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 235 && mouseY <= 255) {
+      fill(0);
+      rect(10, 235, 50, 20);
+      hexaConverted = true;
+    }
+    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 235 && mouseY <= 255) {
+      fill(0);
+      rect(90, 235, 50, 20);
+      hexaConverted = false;
     }
     fill(0);
     textSize(12);
     text("X, Y: " + mouseX + " " + mouseY, 10, 12);
   }
 }
+
