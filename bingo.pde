@@ -447,12 +447,50 @@ void draw () {
     text(o, 460, textY);
     textY += 80;
   }
-  octalConvert();
-  hexaConvert();
-  binaryConvert();
+  octalConvert(); //Add octal conversions.
+  hexaConvert(); //Add hexadecimal conversions.
+  binaryConvert(); //Add binary conversions.
   free(); //Add "FREE" tile in the centre.
-  if (pdfRecord) {
-    save("bingoCard.png");
+  //Add option to output to .PNG
+  if (pdfRecord && binaryConverted && middle) {
+    noLoop();
+    save("bingoCard_binaryFree.png");
+    loop();
+  }
+  if (pdfRecord && binaryConverted) {
+    noLoop();
+    save("bingoCard_binary.png");
+    loop();
+  }
+  if (pdfRecord && hexaConverted && middle) {
+    noLoop();
+    save("bingoCard_hexadecimalFree.png");
+    loop();
+  }
+  if (pdfRecord && hexaConverted) {
+    noLoop();
+    save("bingoCard_hexadecimal.png");
+    loop();
+  }
+  if (pdfRecord && octalConverted) {
+    noLoop();
+    save("bingoCard_octal.png");
+    loop();
+  }
+  if (pdfRecord && octalConverted && middle) {
+    noLoop();
+    save("bingoCard_octalFree.png");
+    loop();
+  }
+  if (pdfRecord && !binaryConverted) {
+    noLoop();
+    save("bingoCard_decimal.png");
+    loop();
+  }
+  if (pdfRecord && !binaryConverted && middle) {
+    noLoop();
+    save("bingoCard_decimalFree.png");
+    loop();
   }
 }
 public class Settings extends PApplet {
@@ -491,9 +529,11 @@ public class Settings extends PApplet {
     text("Binary", 10, 130);
     text("Regenerate Numbers", 15, 200);
     fill(255);
-    rect(10, 320, 100, 30);
+    rect(10, 340, 100, 50);
+    rect(140, 340, 100, 50);
     fill(0);
-    text("Create PDF", 15, 340);
+    text("Start PDF\nCreation", 15, 360);
+    text("End PDF\nCreation", 150, 360);
     text("Hexadecimal", 10, 230);
     text("Octal", 10, 290);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
@@ -506,8 +546,8 @@ public class Settings extends PApplet {
       rect(10, 80, 50, 20);
       middle = true;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 320 && mouseY <= 350) {
-      rect(10, 320, 100, 30);
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390) {
+      rect(10, 340, 100, 50);
       pdfRecord = true;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
