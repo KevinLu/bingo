@@ -1,3 +1,5 @@
+import processing.pdf.*;
+
 IntList B = new IntList(5);
 IntList I = new IntList(5);
 IntList N = new IntList(5);
@@ -33,14 +35,13 @@ boolean middle = true;
 boolean binaryConverted = false;
 boolean hexaConverted = false;
 boolean octalConverted = false;
+boolean pdfRecord = false;
 
 float c = 0;
-import processing.pdf.*;
 void settings () {
   size(600, 600);
 }
 void setup () {
-  surface.setResizable(true);
   //Create Settings window
   String[] args = {"Settings"};
   Settings sa = new Settings();
@@ -93,7 +94,6 @@ void setup () {
   for (int x = 120; x != 500; Ooct.append(++x)) {
     Ooct.shuffle();
   }
-  beginRecord(PDF, "bingo-####.pdf");
 }
 void debug() {
   fill(0);
@@ -451,6 +451,9 @@ void draw () {
   hexaConvert();
   binaryConvert();
   free(); //Add "FREE" tile in the centre.
+  if (pdfRecord) {
+    save("bingoCard.png");
+  }
 }
 public class Settings extends PApplet {
 
@@ -505,7 +508,7 @@ public class Settings extends PApplet {
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 320 && mouseY <= 350) {
       rect(10, 320, 100, 30);
-      endRecord();
+      pdfRecord = true;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
       fill(0);
