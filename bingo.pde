@@ -1,20 +1,20 @@
 import processing.pdf.*;
 
-IntList B = new IntList(5);
-IntList I = new IntList(5);
-IntList N = new IntList(5);
-IntList G = new IntList(5);
-IntList O = new IntList(5);
-IntList Bhex = new IntList(5);
-IntList Ihex = new IntList(5);
-IntList Nhex = new IntList(5);
-IntList Ghex = new IntList(5);
-IntList Ohex = new IntList(5);
-IntList Boct = new IntList(5);
-IntList Ioct = new IntList(5);
-IntList Noct = new IntList(5);
-IntList Goct = new IntList(5);
-IntList Ooct = new IntList(5);
+IntList B = new IntList();
+IntList I = new IntList();
+IntList N = new IntList();
+IntList G = new IntList();
+IntList O = new IntList();
+IntList Bhex = new IntList();
+IntList Ihex = new IntList();
+IntList Nhex = new IntList();
+IntList Ghex = new IntList();
+IntList Ohex = new IntList();
+IntList Boct = new IntList();
+IntList Ioct = new IntList();
+IntList Noct = new IntList();
+IntList Goct = new IntList();
+IntList Ooct = new IntList();
 String[] Bbinary = new String[5];
 String[] Ibinary = new String[5];
 String[] Nbinary = new String[5];
@@ -110,73 +110,25 @@ void free() {
     text("FREE", 300, 310);
   }
 }
-void regen() {
-  //clear the IntLists to avoid duplicates
-  B.clear();
-  I.clear();
-  N.clear();
-  G.clear();
-  O.clear();
+void regenDecimal() {
   //shuffle the IntLists
-  for (int x = 0; x != 15; B.append(++x)) {
-    B.shuffle();
-  }
-  for (int x = 15; x != 30; I.append(++x)) {
-    I.shuffle();
-  }
-  for (int x = 30; x != 60; N.append(++x)) {
-    N.shuffle();
-  }
-  for (int x = 60; x != 90; G.append(++x)) {
-    G.shuffle();
-  }
-  for (int x = 90; x != 120; O.append(++x)) {
-    O.shuffle();
-  }
-  //clear the IntLists to avoid duplicates
-  Bhex.clear();
-  Ihex.clear();
-  Nhex.clear();
-  Ghex.clear();
-  Ohex.clear();
+  B.shuffle();
+  I.shuffle();
+  N.shuffle();
+  G.shuffle();
+  O.shuffle();
   //shuffle the IntLists
-  for (int x = 0; x != 50; Bhex.append(++x)) {
-    Bhex.shuffle();
-  }
-  for (int x = 50; x != 100; Ihex.append(++x)) {
-    Ihex.shuffle();
-  }
-  for (int x = 100; x != 150; Nhex.append(++x)) {
-    Nhex.shuffle();
-  }
-  for (int x = 150; x != 200; Ghex.append(++x)) {
-    Ghex.shuffle();
-  }
-  for (int x = 200; x != 250; Ohex.append(++x)) {
-    Ohex.shuffle();
-  }
-  //clear the IntLists to avoid duplicates
-  Boct.clear();
-  Ioct.clear();
-  Noct.clear();
-  Goct.clear();
-  Ooct.clear();
+  Boct.shuffle();
+  Ioct.shuffle();
+  Noct.shuffle();
+  Goct.shuffle();
+  Ooct.shuffle();
   //shuffle the IntLists
-  for (int x = 0; x != 30; Boct.append(++x)) {
-    Boct.shuffle();
-  }
-  for (int x = 30; x != 60; Ioct.append(++x)) {
-    Ioct.shuffle();
-  }
-  for (int x = 60; x != 90; Noct.append(++x)) {
-    Noct.shuffle();
-  }
-  for (int x = 90; x != 120; Goct.append(++x)) {
-    Goct.shuffle();
-  }
-  for (int x = 120; x != 500; Ooct.append(++x)) {
-    Ooct.shuffle();
-  }
+  Bhex.shuffle();
+  Ihex.shuffle();
+  Nhex.shuffle();
+  Ghex.shuffle();
+  Ohex.shuffle();
 }
 void octalConvert() {
   for (int i = 0; i < 5; i++) {
@@ -419,32 +371,27 @@ void draw () {
   }
   int textY = 150;
   for (int i = 0; i < 5; i++) {
-    int b = B.get(i);
-    text(b, 140, textY);
+    text(B.get(i), 140, textY);
     textY += 80;
   }
   textY = 150;
   for (int j = 0; j < 5; j++) {
-    int i = I.get(j);
-    text(i, 220, textY);
+    text(I.get(j), 220, textY);
     textY += 80;
   }
   textY = 150;
   for (int j = 0; j < 5; j++) {
-    int n = N.get(j);
-    text(n, 300, textY);
+    text(N.get(j), 300, textY);
     textY += 80;
   }
   textY = 150;
   for (int j = 0; j < 5; j++) {
-    int g = G.get(j);
-    text(g, 380, textY);
+    text(G.get(j), 380, textY);
     textY += 80;
   }
   textY = 150;
   for (int j = 0; j < 5; j++) {
-    int o = O.get(j);
-    text(o, 460, textY);
+    text(O.get(j), 460, textY);
     textY += 80;
   }
   octalConvert(); //Add octal conversions.
@@ -530,10 +477,8 @@ public class Settings extends PApplet {
     text("Regenerate Numbers", 15, 200);
     fill(255);
     rect(10, 340, 100, 50);
-    rect(140, 340, 100, 50);
     fill(0);
-    text("Start PDF\nCreation", 15, 360);
-    text("End PDF\nCreation", 150, 360);
+    text("Create PDF", 15, 370);
     text("Hexadecimal", 10, 230);
     text("Octal", 10, 290);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
@@ -553,7 +498,7 @@ public class Settings extends PApplet {
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
       fill(0);
       rect(10, 185, 170, 20);
-      regen();
+      regenDecimal();
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
       fill(0);
