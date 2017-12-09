@@ -10,11 +10,11 @@ Assignment #3
 * ~~Add button for regenerating numbers.~~
 * ~~Implement output to PDF function.~~
 * ~~Implement "FREE" option in the center.~~
-* Add button to toggle between various number systems.
+* ~~Add buttons to toggle between various number systems.~~
 * Off screen output.
 * Output the cards in a visually pleasing manner.
 * Can, if requested, generate more than one bingo card as required.
-* Can, if requested, generate more than one file's worth of cards.
+* ~~Can, if requested, generate more than one file's worth of cards.~~
 
 ## Getting Started
 
