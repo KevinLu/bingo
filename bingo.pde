@@ -44,8 +44,9 @@ void settings () {
 void setup () {
   //Create Settings window
   String[] args = {"Settings"};
-  Settings sa = new Settings();
+  SettingsWindow sa = new SettingsWindow();
   PApplet.runSketch(args, sa);
+  surface.setTitle("Number Systems Bingo");
   //Decimals
   for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
@@ -110,7 +111,8 @@ void free() {
     text("FREE", 300, 310);
   }
 }
-void regenDecimal() {
+void regen() {
+  delay(75);
   //shuffle the IntLists
   B.shuffle();
   I.shuffle();
@@ -399,183 +401,44 @@ void draw () {
   binaryConvert(); //Add binary conversions.
   free(); //Add "FREE" tile in the centre.
   //Add option to output to .PNG
-  if (pdfRecord && binaryConverted && middle) {
+  if (pdfRecord && binaryConverted && !middle) {
     noLoop();
-    save("bingoCard_binaryFree.png");
+    save("Saved Images/bingoCard_binary.png");
     loop();
   }
-  if (pdfRecord && binaryConverted) {
+  if (pdfRecord && binaryConverted && middle) {
     noLoop();
-    save("bingoCard_binary.png");
+    save("Saved Images/bingoCard_binaryFree.png");
+    loop();
+  }
+  if (pdfRecord && hexaConverted && !middle) {
+    noLoop();
+    save("Saved Images/bingoCard_hexadecimal.png");
     loop();
   }
   if (pdfRecord && hexaConverted && middle) {
     noLoop();
-    save("bingoCard_hexadecimalFree.png");
+    save("Saved Images/bingoCard_hexadecimalFree.png");
     loop();
   }
-  if (pdfRecord && hexaConverted) {
+  if (pdfRecord && octalConverted && !middle) {
     noLoop();
-    save("bingoCard_hexadecimal.png");
-    loop();
-  }
-  if (pdfRecord && octalConverted) {
-    noLoop();
-    save("bingoCard_octal.png");
+    save("Saved Images/bingoCard_octal.png");
     loop();
   }
   if (pdfRecord && octalConverted && middle) {
     noLoop();
-    save("bingoCard_octalFree.png");
+    save("Saved Images/bingoCard_octalFree.png");
     loop();
   }
-  if (pdfRecord && !binaryConverted) {
+  if (pdfRecord && !binaryConverted && !middle) {
     noLoop();
-    save("bingoCard_decimal.png");
+    save("Saved Images/bingoCard_decimal.png");
     loop();
   }
   if (pdfRecord && !binaryConverted && middle) {
     noLoop();
-    save("bingoCard_decimalFree.png");
+    save("Saved Images/bingoCard_decimalFree.png");
     loop();
-  }
-}
-public class Settings extends PApplet {
-
-  public void settings() {
-    size(300, 400);
-  }
-  public void draw() {
-    background(255);
-    fill(255);
-    rect(10, 185, 170, 20);//"REGENERATE"
-    fill(0);
-    textSize(20);
-    text("Bingo Options", 90, 20);
-    textSize(16);
-    text("Free in middle?", 10, 70);
-    fill(255);
-    rect(10, 80, 50, 20);// free button "yes" option
-    rect(90, 80, 50, 20);//free button "no" option
-    rect(10, 140, 50, 20);// binary "yes" button
-    rect(90, 140, 50, 20);// binary "no" button
-    rect(10, 235, 50, 20);//hexa "yes" button
-    rect(90, 235, 50, 20);//hexa "no" button
-    rect(10, 295, 50, 20);//octal "yes" button
-    rect(90, 295, 50, 20);//octal "no" button
-    fill(0);
-    text("Yes", 20, 95);
-    text("No", 105, 95);
-    text("Yes", 20, 155);
-    text("No", 105, 155);
-    text("Yes", 20, 250);
-    text("No", 105, 250);
-    text("Yes", 20, 310);
-    text("No", 105, 310);
-    fill(0);
-    text("Binary", 10, 130);
-    text("Regenerate Numbers", 15, 200);
-    fill(255);
-    rect(10, 340, 100, 50);
-    fill(0);
-    text("Create PDF", 15, 370);
-    text("Hexadecimal", 10, 230);
-    text("Octal", 10, 290);
-    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
-      fill(0);
-      rect(90, 80, 50, 20);
-      middle = false;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 80 && mouseY <= 100) {
-      fill(0);
-      rect(10, 80, 50, 20);
-      middle = true;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390) {
-      rect(10, 340, 100, 50);
-      pdfRecord = true;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
-      fill(0);
-      rect(10, 185, 170, 20);
-      regenDecimal();
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
-      fill(0);
-      rect(10, 140, 50, 20);
-      binaryConverted = true;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 140 && mouseY <= 160) {
-      fill(0);
-      rect(90, 140, 50, 20);
-      binaryConverted = false;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 235 && mouseY <= 255) {
-      fill(0);
-      rect(10, 235, 50, 20);
-      hexaConverted = true;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 235 && mouseY <= 255) {
-      fill(0);
-      rect(90, 235, 50, 20);
-      hexaConverted = false;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 295 && mouseY <= 315) {
-      fill(0);
-      rect(10, 295, 50, 20);
-      octalConverted = true;
-    }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 295 && mouseY <= 315) {
-      fill(0);
-      rect(90, 295, 50, 20);
-      octalConverted = false;
-    }
-    if (middle) {
-      fill(0);
-      rect(10, 80, 50, 20);// free button "yes" option
-      fill(255);
-      text("Yes", 20, 95);
-    } else if (!middle) {
-      fill(0);
-      rect(90, 80, 50, 20);//free button "no" option
-      fill(255);
-      text("No", 105, 95);
-    }
-    if (binaryConverted) {
-      fill(0);
-      rect(10, 140, 50, 20);// binary "yes" button
-      fill(255);
-      text("Yes", 20, 155);
-    } else if (!binaryConverted) {
-      fill(0);
-      rect(90, 140, 50, 20);// binary "no" button
-      fill(255);
-      text("No", 105, 155);
-    }
-    if (hexaConverted) {
-      fill(0);
-      rect(10, 235, 50, 20);//hexa "yes" button
-      fill(255);
-      text("Yes", 20, 250);
-    } else if (!hexaConverted) {
-      fill(0);
-      rect(90, 235, 50, 20);//hexa "no" button
-      fill(255);
-      text("No", 105, 250);
-    }
-    if (octalConverted) {
-      fill(0);
-      rect(10, 295, 50, 20);//octal "yes" button
-      fill(255);
-      text("Yes", 20, 310);
-    } else if (!octalConverted) {
-      fill(0);
-      rect(90, 295, 50, 20);//octal "no" button
-      fill(255);
-      text("No", 105, 310);
-    }
-    fill(0);
-    textSize(12);
-    text("X, Y: " + mouseX + " " + mouseY, 10, 12);
   }
 }
