@@ -60,11 +60,14 @@ public class SettingsWindow extends PApplet {
       fill(0);
       rect(10, 185, 170, 20);
       regen();
+      
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
       fill(0);
       rect(10, 140, 50, 20);
       binaryConverted = true;
+      hexaConverted = false;
+      octalConverted = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 140 && mouseY <= 160) {
       fill(0);
@@ -75,6 +78,8 @@ public class SettingsWindow extends PApplet {
       fill(0);
       rect(10, 235, 50, 20);
       hexaConverted = true;
+      binaryConverted = false;
+      octalConverted = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 235 && mouseY <= 255) {
       fill(0);
@@ -85,6 +90,8 @@ public class SettingsWindow extends PApplet {
       fill(0);
       rect(10, 295, 50, 20);
       octalConverted = true;
+      hexaConverted = false;
+      binaryConverted = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 295 && mouseY <= 315) {
       fill(0);
