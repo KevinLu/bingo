@@ -37,7 +37,7 @@ boolean hexaConverted = false;
 boolean octalConverted = false;
 boolean pdfRecord = false;
 
-float c = 0;
+int cards = 1;
 void settings () {
   size(600, 600);
 }
@@ -47,6 +47,7 @@ void setup () {
   SettingsWindow sa = new SettingsWindow();
   PApplet.runSketch(args, sa);
   surface.setTitle("Number Systems Bingo");
+  surface.setResizable(true);
   //Decimals
   for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
@@ -96,6 +97,34 @@ void setup () {
     Ooct.shuffle();
   }
 }
+void BingoCard() {
+  int grid_x = 100;
+  while (grid_x < 580) {
+    line(grid_x, 100, grid_x, 500);
+    grid_x = grid_x + 80;
+  }
+  int grid_y = 100;
+  while (grid_y < 580) {
+    line(100, grid_y, 500, grid_y);
+    grid_y = grid_y + 80;
+    fill(0);
+    textSize(32);
+    textAlign(CENTER);
+  }
+  int bingoOffset = 60;
+  for (int i = 0; i < 5; i++) {
+    text("B", bingoOffset, 85);
+    bingoOffset += 80;
+    text("I", bingoOffset, 85);
+    bingoOffset += 80;
+    text("N", bingoOffset, 85);
+    bingoOffset += 80;
+    text("G", bingoOffset, 85);
+    bingoOffset += 80;
+    text("O", bingoOffset, 85);
+    bingoOffset += 80;
+  }
+}
 void debug() {
   fill(0);
   textSize(12);
@@ -112,7 +141,6 @@ void free() {
   }
 }
 void regen() {
-  delay(75);
   //shuffle the IntLists
   B.shuffle();
   I.shuffle();
@@ -341,36 +369,11 @@ void binaryConvert() {
   }
 }
 void draw () {
+  surface.setSize(600*cards, 600*cards);
   background(255);
+  BingoCard();
   debug();
-  int grid_x = 100;
-  while (grid_x < 580) {
-    line(grid_x, 100, grid_x, 500);
-    grid_x = grid_x + 80;
-  }
-  int grid_y = 100;
-  while (grid_y < 580) {
-    line(100, grid_y, 500, grid_y);
-    grid_y = grid_y + 80;
-    fill(0);
-    textSize(32);
-    textAlign(CENTER);
-    text("Decimal Bingo", width/2, 25);
-  }
-  int bingoOffset = 60;
-  for (int i = 0; i < 5; i++) {
-    bingoOffset += 80;
-    text("B", bingoOffset, 85);
-    bingoOffset += 80;
-    text("I", bingoOffset, 85);
-    bingoOffset += 80;
-    text("N", bingoOffset, 85);
-    bingoOffset += 80;
-    text("G", bingoOffset, 85);
-    bingoOffset += 80;
-    text("O", bingoOffset, 85);
-    bingoOffset += 80;
-  }
+  textSize(32);
   int textY = 150;
   for (int i = 0; i < 5; i++) {
     text(B.get(i), 140, textY);
@@ -400,45 +403,47 @@ void draw () {
   hexaConvert(); //Add hexadecimal conversions.
   binaryConvert(); //Add binary conversions.
   free(); //Add "FREE" tile in the centre.
+  //Adding option to extend cards!
+
   //Add option to output to .PNG
   if (pdfRecord && binaryConverted && !middle) {
     noLoop();
-    save("Saved Images/bingoCard_binary.png");
+    saveFrame("Saved Images/bingoCard_binary_####.png");
     loop();
   }
   if (pdfRecord && binaryConverted && middle) {
     noLoop();
-    save("Saved Images/bingoCard_binaryFree.png");
+    saveFrame("Saved Images/bingoCard_binaryFree_####.png");
     loop();
   }
   if (pdfRecord && hexaConverted && !middle) {
     noLoop();
-    save("Saved Images/bingoCard_hexadecimal.png");
+    saveFrame("Saved Images/bingoCard_hexadecimal_####.png");
     loop();
   }
   if (pdfRecord && hexaConverted && middle) {
     noLoop();
-    save("Saved Images/bingoCard_hexadecimalFree.png");
+    saveFrame("Saved Images/bingoCard_hexadecimalFree_####.png");
     loop();
   }
   if (pdfRecord && octalConverted && !middle) {
     noLoop();
-    save("Saved Images/bingoCard_octal.png");
+    saveFrame("Saved Images/bingoCard_octal_####.png");
     loop();
   }
   if (pdfRecord && octalConverted && middle) {
     noLoop();
-    save("Saved Images/bingoCard_octalFree.png");
+    saveFrame("Saved Images/bingoCard_octalFree_####.png");
     loop();
   }
   if (pdfRecord && !binaryConverted && !middle) {
     noLoop();
-    save("Saved Images/bingoCard_decimal.png");
+    saveFrame("Saved Images/bingoCard_decimal_####.png");
     loop();
   }
   if (pdfRecord && !binaryConverted && middle) {
     noLoop();
-    save("Saved Images/bingoCard_decimalFree.png");
+    saveFrame("Saved Images/bingoCard_decimalFree_####.png");
     loop();
   }
 }
