@@ -111,8 +111,9 @@ void BingoCard() {
     textSize(32);
     textAlign(CENTER);
   }
-  int bingoOffset = 60;
+  int bingoOffset = 140;
   for (int i = 0; i < 5; i++) {
+    textAlign(CENTER);
     text("B", bingoOffset, 85);
     bingoOffset += 80;
     text("I", bingoOffset, 85);
@@ -122,7 +123,7 @@ void BingoCard() {
     text("G", bingoOffset, 85);
     bingoOffset += 80;
     text("O", bingoOffset, 85);
-    bingoOffset += 80;
+    bingoOffset += 150;
   }
 }
 void debug() {
@@ -170,37 +171,10 @@ void octalConvert() {
   }
   if (octalConverted) {
     background(255);
-    debug();
-    int grid_x = 100;
-    while (grid_x < 580) {
-      line(grid_x, 100, grid_x, 500);
-      grid_x = grid_x + 80;
-    }
-    int grid_y = 100;
-    while (grid_y < 580) {
-      line(100, grid_y, 500, grid_y);
-      grid_y = grid_y + 80;
-      fill(0);
-      textSize(32);
-      textAlign(CENTER);
-      text("Octal Bingo", width/2, 25);
-    }
-    int bingoOffset = 60;
-    for (int i = 0; i < 5; i++) {
-      bingoOffset += 80;
-      text("B", bingoOffset, 85);
-      bingoOffset += 80;
-      text("I", bingoOffset, 85);
-      bingoOffset += 80;
-      text("N", bingoOffset, 85);
-      bingoOffset += 80;
-      text("G", bingoOffset, 85);
-      bingoOffset += 80;
-      text("O", bingoOffset, 85);
-      bingoOffset += 80;
-    }
+    BingoCard();
+    text("Octal Bingo", width/2, 25);
     int textY = 150;
-    textSize(24);
+    textSize(32);
     for (int i = 0; i < 5; i++) {
       text(Bocta[i], 140, textY);
       textY += 80;
@@ -225,7 +199,6 @@ void octalConvert() {
       text(Oocta[j], 460, textY);
       textY += 80;
     }
-
     free(); //Add "FREE" tile in the centre.
   }
 }
@@ -239,37 +212,10 @@ void hexaConvert() {
   }
   if (hexaConverted) {
     background(255);
-    debug();
-    int grid_x = 100;
-    while (grid_x < 580) {
-      line(grid_x, 100, grid_x, 500);
-      grid_x = grid_x + 80;
-    }
-    int grid_y = 100;
-    while (grid_y < 580) {
-      line(100, grid_y, 500, grid_y);
-      grid_y = grid_y + 80;
-      fill(0);
-      textSize(32);
-      textAlign(CENTER);
-      text("Hexadecimal Bingo", width/2, 25);
-    }
-    int bingoOffset = 60;
-    for (int i = 0; i < 5; i++) {
-      bingoOffset += 80;
-      text("B", bingoOffset, 85);
-      bingoOffset += 80;
-      text("I", bingoOffset, 85);
-      bingoOffset += 80;
-      text("N", bingoOffset, 85);
-      bingoOffset += 80;
-      text("G", bingoOffset, 85);
-      bingoOffset += 80;
-      text("O", bingoOffset, 85);
-      bingoOffset += 80;
-    }
+    BingoCard();
+    text("Hexadecimal Bingo", width/2, 25);
     int textY = 150;
-    textSize(24);
+    textSize(32);
     for (int i = 0; i < 5; i++) {
       text(Bhexa[i], 140, textY);
       textY += 80;
@@ -309,35 +255,8 @@ void binaryConvert() {
   }
   if (binaryConverted) {
     background(255);
-    debug();
-    int grid_x = 100;
-    while (grid_x < 580) {
-      line(grid_x, 100, grid_x, 500);
-      grid_x = grid_x + 80;
-    }
-    int grid_y = 100;
-    while (grid_y < 580) {
-      line(100, grid_y, 500, grid_y);
-      grid_y = grid_y + 80;
-      fill(0);
-      textSize(32);
-      textAlign(CENTER);
-      text("Binary Bingo", width/2, 25);
-    }
-    int bingoOffset = 60;
-    for (int i = 0; i < 5; i++) {
-      bingoOffset += 80;
-      text("B", bingoOffset, 85);
-      bingoOffset += 80;
-      text("I", bingoOffset, 85);
-      bingoOffset += 80;
-      text("N", bingoOffset, 85);
-      bingoOffset += 80;
-      text("G", bingoOffset, 85);
-      bingoOffset += 80;
-      text("O", bingoOffset, 85);
-      bingoOffset += 80;
-    }
+    BingoCard();
+    text("Binary Bingo", width/2, 25);
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
@@ -369,11 +288,12 @@ void binaryConvert() {
   }
 }
 void draw () {
-  surface.setSize(600*cards, 600*cards);
+  //surface.setSize(600*cards, 600*cards);
   background(255);
   BingoCard();
   debug();
   textSize(32);
+  text("Decimal Bingo", width/2, 25);
   int textY = 150;
   for (int i = 0; i < 5; i++) {
     text(B.get(i), 140, textY);
