@@ -70,16 +70,10 @@ public class SettingsWindow extends PApplet {
     if (mousePressed && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
       rect(110, 340, 100, 50);
       cards++;
-      if (cards*600 >= displayWidth) {
-        cards = 1;
-      }
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 210 && mouseX <= 310 && mouseY >= 340 && mouseY <= 390) {
       rect(210, 340, 100, 50);
       cards--;
-      if (cards*600 <= 600) {
-        cards = 1;
-      }
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
       fill(0);
