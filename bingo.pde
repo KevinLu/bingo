@@ -93,26 +93,24 @@ void setup () {
   for (int x = 90; x != 120; Goct.append(++x)) {
     Goct.shuffle();
   }
-  for (int x = 120; x != 500; Ooct.append(++x)) {
+  for (int x = 120; x != 150; Ooct.append(++x)) {
     Ooct.shuffle();
   }
 }
 void BingoCard() {
-  int grid_x = 100;
-  while (grid_x < 580) {
-    line(grid_x, 100, grid_x, 500);
-    grid_x = grid_x + 80;
+  int grid_x = 100*cards;
+  while (grid_x < width-(20*cards)) {
+    line(grid_x, 100*cards, grid_x, width-(100*cards));
+    grid_x += 80;
   }
-  int grid_y = 100;
-  while (grid_y < 580) {
-    line(100, grid_y, 500, grid_y);
-    grid_y = grid_y + 80;
-    fill(0);
-    textSize(32);
-    textAlign(CENTER);
+  int grid_y = 100*cards;
+  while (grid_y < height-(20*cards)) {
+    line(100*cards, grid_y, height-(100*cards), grid_y);
+    grid_y += 80;
   }
-  int bingoOffset = 140;
+  int bingoOffset = 140*cards;
   for (int i = 0; i < 5; i++) {
+    textSize(32);
     textAlign(CENTER);
     text("B", bingoOffset, 85);
     bingoOffset += 80;
