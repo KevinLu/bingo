@@ -1,4 +1,5 @@
 boolean mouseRel;
+boolean mouseClick;
 public class SettingsWindow extends PApplet {
   public void settings() {
     size(350, 400);
@@ -9,6 +10,9 @@ public class SettingsWindow extends PApplet {
   }
   public void mouseReleased() {
     mouseRel = true;
+  }
+  public void mousePressed() {
+    mouseClick = true;
   }
   public void draw() {
     background(255);
@@ -67,18 +71,24 @@ public class SettingsWindow extends PApplet {
     } else {
       pdfRecord = false;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
+    if (mouseClick && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
       rect(110, 340, 100, 50);
       cards++;
+      mouseClick = false;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 210 && mouseX <= 310 && mouseY >= 340 && mouseY <= 390) {
+    if (mouseClick && mouseButton == LEFT && mouseX >= 210 && mouseX <= 310 && mouseY >= 340 && mouseY <= 390) {
       rect(210, 340, 100, 50);
       cards--;
+      mouseClick = false;
+      if (cards < 1) {
+        cards = 1;
+      }
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
+    if (mouseClick && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
       fill(0);
       rect(10, 185, 170, 20);
       regen();
+      mouseClick = false;
     }
     if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 60 && mouseY >= 140 && mouseY <= 160) {
       fill(0);
