@@ -47,7 +47,6 @@ void setup () {
   SettingsWindow sa = new SettingsWindow();
   PApplet.runSketch(args, sa);
   surface.setTitle("Number Systems Bingo");
-  surface.setResizable(true);
   //Decimals
   for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
@@ -97,31 +96,16 @@ void setup () {
     Ooct.shuffle();
   }
 }
-void BingoCard() {
-  int grid_x = 100*cards;
+void bingoCard(int grid_x, int grid_y) {
+  grid_x = 100*cards;
   while (grid_x < width-(20*cards)) {
     line(grid_x, 100*cards, grid_x, width-(100*cards));
     grid_x += 80;
   }
-  int grid_y = 100*cards;
+  grid_y = 100*cards;
   while (grid_y < height-(20*cards)) {
     line(100*cards, grid_y, height-(100*cards), grid_y);
     grid_y += 80;
-  }
-  int bingoOffset = 140*cards;
-  for (int i = 0; i < 5; i++) {
-    textSize(32);
-    textAlign(CENTER);
-    text("B", bingoOffset, 85);
-    bingoOffset += 80;
-    text("I", bingoOffset, 85);
-    bingoOffset += 80;
-    text("N", bingoOffset, 85);
-    bingoOffset += 80;
-    text("G", bingoOffset, 85);
-    bingoOffset += 80;
-    text("O", bingoOffset, 85);
-    bingoOffset += 150;
   }
 }
 void debug() {
@@ -169,35 +153,52 @@ void octalConvert() {
   }
   if (octalConverted) {
     background(255);
-    BingoCard();
-    text("Octal Bingo", width/2, 25);
-    int textY = 150;
-    textSize(32);
-    for (int i = 0; i < 5; i++) {
-      text(Bocta[i], 140, textY);
-      textY += 80;
+    for (int x = 0; x < cards; x++) {
+      bingoCard(x, x);
+      text("Octal Bingo", cards*300, 25);
+      int bingoOffset = 140*cards;
+      for (int i = 0; i < 5; i++) {
+        textSize(32);
+        textAlign(CENTER);
+        text("B", bingoOffset, 85);
+        bingoOffset += 80;
+        text("I", bingoOffset, 85);
+        bingoOffset += 80;
+        text("N", bingoOffset, 85);
+        bingoOffset += 80;
+        text("G", bingoOffset, 85);
+        bingoOffset += 80;
+        text("O", bingoOffset, 85);
+        bingoOffset += 150;
+      }
+      int textY = 150;
+      textSize(32);
+      for (int i = 0; i < 5; i++) {
+        text(Bocta[i], 140, textY);
+        textY += 80;
+      }
+      textY = 150;
+      for (int j = 0; j < 5; j++) {
+        text(Iocta[j], 220, textY);
+        textY += 80;
+      }
+      textY = 150;
+      for (int j = 0; j < 5; j++) {
+        text(Nocta[j], 300, textY);
+        textY += 80;
+      }
+      textY = 150;
+      for (int j = 0; j < 5; j++) {
+        text(Gocta[j], 380, textY);
+        textY += 80;
+      }
+      textY = 150;
+      for (int j = 0; j < 5; j++) {
+        text(Oocta[j], 460, textY);
+        textY += 80;
+      }
+      free(); //Add "FREE" tile in the centre.
     }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(Iocta[j], 220, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(Nocta[j], 300, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(Gocta[j], 380, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(Oocta[j], 460, textY);
-      textY += 80;
-    }
-    free(); //Add "FREE" tile in the centre.
   }
 }
 void hexaConvert() {
@@ -210,7 +211,7 @@ void hexaConvert() {
   }
   if (hexaConverted) {
     background(255);
-    BingoCard();
+    //bingoCard(x, x);
     text("Hexadecimal Bingo", width/2, 25);
     int textY = 150;
     textSize(32);
@@ -253,7 +254,7 @@ void binaryConvert() {
   }
   if (binaryConverted) {
     background(255);
-    BingoCard();
+    //bingoCard();
     text("Binary Bingo", width/2, 25);
     int textY = 150;
     textSize(24);
@@ -288,8 +289,9 @@ void binaryConvert() {
 void draw () {
   //surface.setSize(600*cards, 600*cards);
   background(255);
-  BingoCard();
+  //bingoCard();
   debug();
+  surface.setSize(cards*600, cards*600);
   textSize(32);
   text("Decimal Bingo", width/2, 25);
   int textY = 150;
