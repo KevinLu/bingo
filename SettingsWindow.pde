@@ -2,7 +2,7 @@ boolean mouseRel;
 boolean mouseClick;
 public class SettingsWindow extends PApplet {
   public void settings() {
-    size(350, 400);
+    size(600, 600);
   }
   public void setup() {
     surface.setTitle("Bingo Options");
@@ -13,6 +13,17 @@ public class SettingsWindow extends PApplet {
   }
   public void mousePressed() {
     mouseClick = true;
+    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390)
+    pdfRecord = true;
+    pdf = (PGraphicsPDF)beginRecord(PDF, "G:/Documents/BingoCards/itsnotgonnawork.pdf");
+    for (int i = 0; i <= (1); i++) {
+      PImage recap = loadImage("G:/Documents/BingoCards/testing"+".png");
+      image(recap, 0, 0, 600, 600);
+      if (i != 1) {
+        pdf.nextPage();
+      }
+    }
+    endRecord();
   }
   public void draw() {
     background(255);
@@ -51,8 +62,8 @@ public class SettingsWindow extends PApplet {
     rect(10, 340, 100, 50);
     fill(0);
     text("Create PDF", 15, 370);
-    text("Increase #\n cards", 120, 357);
-    text("Decrease #\n of cards", 217, 357);
+    text("Make more\ncards", 120, 357);
+    text("Stop\nmaking", 217, 357);
     text("Hexadecimal", 10, 230);
     text("Octal", 10, 290);
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
@@ -73,16 +84,14 @@ public class SettingsWindow extends PApplet {
     }
     if (mouseClick && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
       rect(110, 340, 100, 50);
-      cards++;
-      mouseClick = false;
+      pdfRecord = true;
+      //mouseClick = false;
+      regen();
     }
     if (mouseClick && mouseButton == LEFT && mouseX >= 210 && mouseX <= 310 && mouseY >= 340 && mouseY <= 390) {
       rect(210, 340, 100, 50);
-      cards--;
+      pdfRecord = false;
       mouseClick = false;
-      if (cards < 1) {
-        cards = 1;
-      }
     }
     if (mouseClick && mouseButton == LEFT && mouseX >= 10 && mouseX <= 180 && mouseY >= 185 && mouseY <= 205) {
       fill(0);
