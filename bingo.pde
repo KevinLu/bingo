@@ -38,6 +38,7 @@ boolean binaryConverted = false;
 boolean hexaConverted = false;
 boolean octalConverted = false;
 boolean pdfRecord = false;
+boolean pdfCollate = false;
 
 int cards = 1;
 void settings () {
@@ -157,54 +158,52 @@ void octalConvert() {
   }
   if (octalConverted) {
     background(255);
-    for (int x = 0; x < cards; x++) {
-      bingoCard();
-      textFont(font);
-      text("Octal Bingo", cards*300, 25);
-      textFont(def);
-      int bingoOffset = 140*cards;
-      for (int i = 0; i < 5; i++) {
-        textSize(32);
-        textAlign(CENTER);
-        text("B", bingoOffset, 85);
-        bingoOffset += 80;
-        text("I", bingoOffset, 85);
-        bingoOffset += 80;
-        text("N", bingoOffset, 85);
-        bingoOffset += 80;
-        text("G", bingoOffset, 85);
-        bingoOffset += 80;
-        text("O", bingoOffset, 85);
-        bingoOffset += 150;
-      }
-      int textY = 150;
+    bingoCard();
+    textFont(font);
+    text("Octal Bingo", 300, 25);
+    textFont(def);
+    int bingoOffset = 140;
+    for (int i = 0; i < 5; i++) {
       textSize(32);
-      for (int i = 0; i < 5; i++) {
-        text(Bocta[i], 140, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Iocta[j], 220, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Nocta[j], 300, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Gocta[j], 380, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Oocta[j], 460, textY);
-        textY += 80;
-      }
-      free(); //Add "FREE" tile in the centre.
+      textAlign(CENTER);
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 150;
     }
+    int textY = 150;
+    textSize(32);
+    for (int i = 0; i < 5; i++) {
+      text(Bocta[i], 140, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Iocta[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nocta[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Gocta[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Oocta[j], 460, textY);
+      textY += 80;
+    }
+    free(); //Add "FREE" tile in the centre.
   }
 }
 void hexaConvert() {
@@ -217,40 +216,38 @@ void hexaConvert() {
   }
   if (hexaConverted) {
     background(255);
-    for (int x = 0; x < cards; x++) {
-      bingoCard();
-      textFont(font);
-      text("Hexadecimal Bingo", width/2, 25);
-      textFont(def);
-      int textY = 150;
-      textSize(32);
-      for (int i = 0; i < 5; i++) {
-        text(Bhexa[i], 140, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Ihexa[j], 220, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Nhexa[j], 300, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Ghexa[j], 380, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Ohexa[j], 460, textY);
-        textY += 80;
-      }
-
-      free(); //Add "FREE" tile in the centre.
+    bingoCard();
+    textFont(font);
+    text("Hexadecimal Bingo", width/2, 25);
+    textFont(def);
+    int textY = 150;
+    textSize(32);
+    for (int i = 0; i < 5; i++) {
+      text(Bhexa[i], 140, textY);
+      textY += 80;
     }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ihexa[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nhexa[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ghexa[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ohexa[j], 460, textY);
+      textY += 80;
+    }
+
+    free(); //Add "FREE" tile in the centre.
   }
 }
 
@@ -264,128 +261,93 @@ void binaryConvert() {
   }
   if (binaryConverted) {
     background(255);
-    for (int x = 0; x < cards; x++) {
-      bingoCard();
-      textFont(font);
-      text("Binary Bingo", width/2, 25);
-      textFont(def);
-      int textY = 150;
-      textSize(24);
-      for (int i = 0; i < 5; i++) {
-        text(Bbinary[i], 140, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Ibinary[j], 220, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Nbinary[j], 300, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Gbinary[j], 380, textY);
-        textY += 80;
-      }
-      textY = 150;
-      for (int j = 0; j < 5; j++) {
-        text(Obinary[j], 460, textY);
-        textY += 80;
-      }
-
-      free(); //Add "FREE" tile in the centre.
+    bingoCard();
+    textFont(font);
+    text("Binary Bingo", width/2, 25);
+    textFont(def);
+    int textY = 150;
+    textSize(24);
+    for (int i = 0; i < 5; i++) {
+      text(Bbinary[i], 140, textY);
+      textY += 80;
     }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Ibinary[j], 220, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Nbinary[j], 300, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Gbinary[j], 380, textY);
+      textY += 80;
+    }
+    textY = 150;
+    for (int j = 0; j < 5; j++) {
+      text(Obinary[j], 460, textY);
+      textY += 80;
+    }
+
+    free(); //Add "FREE" tile in the centre.
   }
 }
 void draw () {
   background(255);
-  for (int x = 0; x < cards; x++) {
-    bingoCard();
-    debug();
-    textSize(32);
-    textFont(font);
-    fill(0);
-    text("Decimal Bingo", width/2, 25);
-    textFont(def);
-    int textY = 150;
-    for (int i = 0; i < 5; i++) {
-      text(B.get(i), 140, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(I.get(j), 220, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(N.get(j), 300, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(G.get(j), 380, textY);
-      textY += 80;
-    }
-    textY = 150;
-    for (int j = 0; j < 5; j++) {
-      text(O.get(j), 460, textY);
-      textY += 80;
-    }
-    octalConvert(); //Add octal conversions.
-    hexaConvert(); //Add hexadecimal conversions.
-    binaryConvert(); //Add binary conversions.
-    free(); //Add "FREE" tile in the centre.
-    //Adding option to extend cards!
+  bingoCard();
+  //debug();
+  textSize(32);
+  textFont(font);
+  fill(0);
+  text("Decimal Bingo", width/2, 25);
+  textFont(def);
+  int textY = 150;
+  for (int i = 0; i < 5; i++) {
+    text(B.get(i), 140, textY);
+    textY += 80;
+  }
+  textY = 150;
+  for (int j = 0; j < 5; j++) {
+    text(I.get(j), 220, textY);
+    textY += 80;
+  }
+  textY = 150;
+  for (int j = 0; j < 5; j++) {
+    text(N.get(j), 300, textY);
+    textY += 80;
+  }
+  textY = 150;
+  for (int j = 0; j < 5; j++) {
+    text(G.get(j), 380, textY);
+    textY += 80;
+  }
+  textY = 150;
+  for (int j = 0; j < 5; j++) {
+    text(O.get(j), 460, textY);
+    textY += 80;
+  }
+  octalConvert(); //Add octal conversions.
+  hexaConvert(); //Add hexadecimal conversions.
+  binaryConvert(); //Add binary conversions.
+  free(); //Add "FREE" tile in the centre.
+  //Adding option to extend cards!
 
-    //Add option to output to .PNG
-    if (pdfRecord) {
-      noLoop();
-      save("C:/Users/kevin/Desktop/NS_Bingo/bingo/images/" + "bingoCard" + cards + ".png");
-      loop();
+  //Add option to output to .PNG
+  if (pdfRecord) {
+    save("G:/Documents/BingoCards/" + cards + ".png");
+  }
+  if (pdfCollate) {
+    pdf = (PGraphicsPDF)beginRecord(PDF, "G:/Documents/BingoCards/cards.pdf");
+    for (int i = 1; i <= cards; i++) {
+      PImage recap = loadImage("G:/Documents/BingoCards/" + i + ".png");
+      image(recap, 0, 0, 600, 600);
+      if (i != cards) {
+        pdf.nextPage();
+      }
     }
-    if (pdfRecord && binaryConverted && !middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_binary_####.png");
-      loop();
-    }
-    if (pdfRecord && binaryConverted && middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_binaryFree_####.png");
-      loop();
-    }
-    if (pdfRecord && hexaConverted && !middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_hexadecimal_####.png");
-      loop();
-    }
-    if (pdfRecord && hexaConverted && middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_hexadecimalFree_####.png");
-      loop();
-    }
-    if (pdfRecord && octalConverted && !middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_octal_####.png");
-      loop();
-    }
-    if (pdfRecord && octalConverted && middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_octalFree_####.png");
-      loop();
-    }
-    if (pdfRecord && !binaryConverted && !middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_decimal_####.png");
-      loop();
-    }
-    if (pdfRecord && !binaryConverted && middle) {
-      noLoop();
-      saveFrame("Saved Images/bingoCard_decimalFree_####.png");
-      loop();
-    }
+    endRecord();
   }
 }
