@@ -2,23 +2,23 @@
 Bingo program created in Processing for ICS3UO course.
 Assignment #3
 
-## To DO
+## Features
 
-* ~~Create 5x5 grid for numbers.~~
-* ~~Implement random number generator and ensure there are no duplicates.~~
-* ~~Basic interface.~~
-* ~~Add button for regenerating numbers.~~
-* ~~Implement output to PDF function.~~
-* ~~Implement "FREE" option in the center.~~
-* ~~Add buttons to toggle between various number systems.~~
-* Off screen output.
-* Output the cards in a visually pleasing manner.
+* 5x5 grid for numbers.
+* Random number generator.
+* Basic interface.
+* Button for regenerating numbers.
+* Outputs to PDF.
+* "FREE" option in the center.
+* Buttons to toggle between various number systems.
+* Outputs the cards in a visually pleasing manner.
 * Can, if requested, generate more than one bingo card as required.
-* ~~Can, if requested, generate more than one file's worth of cards.~~
+* Can, if requested, generate more than one file's worth of cards.
 
 ## Getting Started
 
-Download the .pde file and run it on your own computer.
+Download the .pde files and run it on your own computer.
+Make sure to set up the correct file paths for proper output.
 
 ### Prerequisites
 
