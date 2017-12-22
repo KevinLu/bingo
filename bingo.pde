@@ -51,8 +51,6 @@ void setup () {
   surface.setTitle("Number Systems Bingo");
   font = createFont("SansSerif.bold", 32);
   def = createFont("Tahoma", 32);
-  String[] fontList = PFont.list();
-  printArray(fontList);
   //Decimals
   for (int x = 0; x != 15; B.append(++x)) {
     B.shuffle();
@@ -102,15 +100,15 @@ void setup () {
     Ooct.shuffle();
   }
 }
-void bingoCard(int grid_x, int grid_y) {
-  grid_x = 100*cards;
-  while (grid_x < width-(20*cards)) {
-    line(grid_x, 100*cards, grid_x, width-(100*cards));
+void bingoCard() {
+  int grid_x = 100;
+  while (grid_x < 580) {
+    line(grid_x, 100, grid_x, 500);
     grid_x += 80;
   }
-  grid_y = 100*cards;
-  while (grid_y < height-(20*cards)) {
-    line(100*cards, grid_y, height-(100*cards), grid_y);
+  int grid_y = 100;
+  while (grid_y < 580) {
+    line(100, grid_y, 500, grid_y);
     grid_y += 80;
   }
 }
@@ -160,7 +158,7 @@ void octalConvert() {
   if (octalConverted) {
     background(255);
     for (int x = 0; x < cards; x++) {
-      bingoCard(x, x);
+      bingoCard();
       textFont(font);
       text("Octal Bingo", cards*300, 25);
       textFont(def);
@@ -220,7 +218,7 @@ void hexaConvert() {
   if (hexaConverted) {
     background(255);
     for (int x = 0; x < cards; x++) {
-      bingoCard(x, x);
+      bingoCard();
       textFont(font);
       text("Hexadecimal Bingo", width/2, 25);
       textFont(def);
@@ -267,7 +265,7 @@ void binaryConvert() {
   if (binaryConverted) {
     background(255);
     for (int x = 0; x < cards; x++) {
-      bingoCard(x, x);
+      bingoCard();
       textFont(font);
       text("Binary Bingo", width/2, 25);
       textFont(def);
@@ -303,12 +301,10 @@ void binaryConvert() {
   }
 }
 void draw () {
-  //surface.setSize(600*cards, 600*cards);
   background(255);
   for (int x = 0; x < cards; x++) {
-    bingoCard(x, x);
+    bingoCard();
     debug();
-    surface.setSize(cards*600, cards*600);
     textSize(32);
     textFont(font);
     fill(0);
@@ -348,7 +344,7 @@ void draw () {
     //Add option to output to .PNG
     if (pdfRecord) {
       noLoop();
-      save("G:/Documents/BingoCards/testing.png");
+      save("C:/Users/kevin/Desktop/NS_Bingo/bingo/images/" + "bingoCard" + cards + ".png");
       loop();
     }
     if (pdfRecord && binaryConverted && !middle) {
