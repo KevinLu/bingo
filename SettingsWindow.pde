@@ -13,17 +13,6 @@ public class SettingsWindow extends PApplet {
   }
   public void mousePressed() {
     mouseClick = true;
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390)
-    pdfRecord = true;
-    pdf = (PGraphicsPDF)beginRecord(PDF, "G:/Documents/BingoCards/itsnotgonnawork.pdf");
-    for (int i = 0; i <= (1); i++) {
-      PImage recap = loadImage("G:/Documents/BingoCards/testing"+".png");
-      image(recap, 0, 0, 600, 600);
-      if (i != 1) {
-        pdf.nextPage();
-      }
-    }
-    endRecord();
   }
   public void draw() {
     background(255);
@@ -76,17 +65,27 @@ public class SettingsWindow extends PApplet {
       rect(10, 80, 50, 20);
       middle = true;
     }
-    if (mousePressed && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390) {
+    if (mouseClick && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390) {
       rect(10, 340, 100, 50);
       pdfRecord = true;
+      pdf = (PGraphicsPDF)beginRecord(PDF, "C:/Users/kevin/Desktop/NS_Bingo/bingo/images/" + "bingoCard" + cards + ".pdf");
+      for (int i = 1; i <= cards; i++) {
+        PImage recap = loadImage("C:/Users/kevin/Desktop/NS_Bingo/bingo/images/" + "bingoCard" + cards + ".png");
+        image(recap, 0, 0, 600, 600);
+        if (i != 1) {
+          pdf.nextPage();
+        }
+      }
+      endRecord();
     } else {
       pdfRecord = false;
     }
     if (mouseClick && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
       rect(110, 340, 100, 50);
       pdfRecord = true;
-      //mouseClick = false;
+      mouseClick = false;
       regen();
+      cards++;
     }
     if (mouseClick && mouseButton == LEFT && mouseX >= 210 && mouseX <= 310 && mouseY >= 340 && mouseY <= 390) {
       rect(210, 340, 100, 50);
