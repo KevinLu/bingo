@@ -1,23 +1,28 @@
-boolean mouseRel;
-boolean mouseClick;
+/*
+SettingsWindow Class
+Description: to serve as a window for various settings options that change the
+display of the main window.
+*/
+boolean mouseRel; //mouseReleased
+boolean mouseClick; //mouseClicked
 public class SettingsWindow extends PApplet {
   public void settings() {
     size(600, 600);
   }
   public void setup() {
-    surface.setTitle("Bingo Options");
-    mouseRel = false;
+    surface.setTitle("Bingo Options"); //Changes the name of the window.
+    mouseRel = false; //set mouseReleased to false on setup.
   }
   public void mouseReleased() {
-    mouseRel = true;
+    mouseRel = true; //set mouseReleased to true when mouse is released.
   }
   public void mousePressed() {
-    mouseClick = true;
+    mouseClick = true; //set mouseClick to true when mouse is pressed.
   }
   public void draw() {
     background(255);
     fill(255);
-    rect(10, 185, 170, 20);//"REGENERATE"
+    rect(10, 185, 170, 20);//"REGENERATE" button
     fill(0);
     textSize(20);
     text("Bingo Options", 90, 20);
@@ -49,10 +54,14 @@ public class SettingsWindow extends PApplet {
     rect(110, 340, 100, 50);
     rect(10, 340, 100, 50);
     fill(0);
-    text("Create PDF", 15, 370);
-    text("Make more\ncards", 120, 357);
+    text("Create PDF", 15, 370); //Click on this option to collate all .PNGs to a single PDF.
+    text("Make more\ncards", 120, 357); //Click on this option to generate a random card!
     text("Hexadecimal", 10, 230);
     text("Octal", 10, 290);
+    /*
+    Various if statements for options.
+    The first few are to enable middle free square and toggle between the number systems.
+    */
     if (mousePressed && mouseButton == LEFT && mouseX >= 90 && mouseX <= 140 && mouseY >= 80 && mouseY <= 100) {
       fill(0);
       rect(90, 80, 50, 20);
@@ -63,6 +72,9 @@ public class SettingsWindow extends PApplet {
       rect(10, 80, 50, 20);
       middle = true;
     }
+    /*
+    set the relevant booleans to true/false when clicked on the respective buttons.
+    */
     if (mouseClick && mouseButton == LEFT && mouseX >= 10 && mouseX <= 110 && mouseY >= 340 && mouseY <= 390) {
       rect(10, 340, 100, 50);
       pdfCollate = true;
@@ -71,6 +83,7 @@ public class SettingsWindow extends PApplet {
       pdfRecord = false;
       pdfCollate = false;
     }
+    //The add more cards button.
     if (mouseClick && mouseButton == LEFT && mouseX >= 110 && mouseX <= 210 && mouseY >= 340 && mouseY <= 390) {
       rect(110, 340, 100, 50);
       pdfRecord = true;
@@ -123,6 +136,9 @@ public class SettingsWindow extends PApplet {
       rect(90, 295, 50, 20);
       octalConverted = false;
     }
+    /*
+    Highlight the selected buttons to indicate selection.
+    */
     if (middle) {
       fill(0);
       rect(10, 80, 50, 20);// free button "yes" option
