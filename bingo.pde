@@ -47,11 +47,6 @@ IntList Ioct = new IntList();
 IntList Noct = new IntList();
 IntList Goct = new IntList();
 IntList Ooct = new IntList();
-String[] Bhexa = new String[5];
-String[] Ihexa = new String[5];
-String[] Nhexa = new String[5];
-String[] Ghexa = new String[5];
-String[] Ohexa = new String[5];
 
 boolean middle = true;
 boolean binaryConverted = false;
@@ -273,13 +268,6 @@ if the hexadecimal function is selected, it will display hexaConvert().
 This is an almost identical copy of the draw() but it changes the decimal to hexadecimal.
 */
 void hexaConvert() {
-  for (int i = 0; i < 5; i++) {
-    Bhexa[i] = hex((byte) Bhex.get(i));
-    Ihexa[i] = hex((byte) Ihex.get(i));
-    Nhexa[i] = hex((byte) Nhex.get(i));
-    Ghexa[i] = hex((byte) Ghex.get(i));
-    Ohexa[i] = hex((byte) Ohex.get(i));
-  }
   if (hexaConverted) {
     background(255);
     bingoCard();
