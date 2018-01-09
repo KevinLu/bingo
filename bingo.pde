@@ -30,23 +30,23 @@ IntList N = new IntList();
 IntList G = new IntList();
 IntList O = new IntList();
 //Binary values
-IntList Bbin = new IntList();
-IntList Ibin = new IntList();
-IntList Nbin = new IntList();
-IntList Gbin = new IntList();
-IntList Obin = new IntList();
+IntList bBin = new IntList();
+IntList iBin = new IntList();
+IntList nBin = new IntList();
+IntList gBin = new IntList();
+IntList oBin = new IntList();
 //Hexadecimal values
-IntList Bhex = new IntList();
-IntList Ihex = new IntList();
-IntList Nhex = new IntList();
-IntList Ghex = new IntList();
-IntList Ohex = new IntList();
+IntList bHex = new IntList();
+IntList iHex = new IntList();
+IntList nHex = new IntList();
+IntList gHex = new IntList();
+IntList oHex = new IntList();
 //Octal values
-IntList Boct = new IntList();
-IntList Ioct = new IntList();
-IntList Noct = new IntList();
-IntList Goct = new IntList();
-IntList Ooct = new IntList();
+IntList bOct = new IntList();
+IntList iOct = new IntList();
+IntList nOct = new IntList();
+IntList gOct = new IntList();
+IntList oOct = new IntList();
 
 boolean middle = true;
 boolean binaryConverted = false;
@@ -93,52 +93,52 @@ void setup () {
     O.shuffle();
   }
   //Binary
-    for (int x = 0; x != 10; Bbin.append(++x)) {
-    Bbin.shuffle();
+    for (int x = 0; x != 10; bBin.append(++x)) {
+    bBin.shuffle();
   }
-  for (int x = 10; x != 20; Ibin.append(++x)) {
-    Ibin.shuffle();
+  for (int x = 10; x != 20; iBin.append(++x)) {
+    iBin.shuffle();
   }
-  for (int x = 20; x != 30; Nbin.append(++x)) {
-    Nbin.shuffle();
+  for (int x = 20; x != 30; nBin.append(++x)) {
+    nBin.shuffle();
   }
-  for (int x = 30; x != 40; Gbin.append(++x)) {
-    Gbin.shuffle();
+  for (int x = 30; x != 40; gBin.append(++x)) {
+    gBin.shuffle();
   }
-  for (int x = 40; x != 50; Obin.append(++x)) {
-    Obin.shuffle();
+  for (int x = 40; x != 50; oBin.append(++x)) {
+    oBin.shuffle();
   }
   //Hexadecimals
-  for (int x = 0; x != 50; Bhex.append(++x)) {
-    Bhex.shuffle();
+  for (int x = 0; x != 50; bHex.append(++x)) {
+    bHex.shuffle();
   }
-  for (int x = 50; x != 100; Ihex.append(++x)) {
-    Ihex.shuffle();
+  for (int x = 50; x != 100; iHex.append(++x)) {
+    iHex.shuffle();
   }
-  for (int x = 100; x != 150; Nhex.append(++x)) {
-    Nhex.shuffle();
+  for (int x = 100; x != 150; nHex.append(++x)) {
+    nHex.shuffle();
   }
-  for (int x = 150; x != 200; Ghex.append(++x)) {
-    Ghex.shuffle();
+  for (int x = 150; x != 200; gHex.append(++x)) {
+    gHex.shuffle();
   }
-  for (int x = 200; x != 250; Ohex.append(++x)) {
-    Ohex.shuffle();
+  for (int x = 200; x != 250; oHex.append(++x)) {
+    oHex.shuffle();
   }
   //Octals
-  for (int x = 0; x != 30; Boct.append(++x)) {
-    Boct.shuffle();
+  for (int x = 0; x != 30; bOct.append(++x)) {
+    bOct.shuffle();
   }
-  for (int x = 30; x != 60; Ioct.append(++x)) {
-    Ioct.shuffle();
+  for (int x = 30; x != 60; iOct.append(++x)) {
+    iOct.shuffle();
   }
-  for (int x = 60; x != 90; Noct.append(++x)) {
-    Noct.shuffle();
+  for (int x = 60; x != 90; nOct.append(++x)) {
+    nOct.shuffle();
   }
-  for (int x = 90; x != 120; Goct.append(++x)) {
-    Goct.shuffle();
+  for (int x = 90; x != 120; gOct.append(++x)) {
+    gOct.shuffle();
   }
-  for (int x = 120; x != 150; Ooct.append(++x)) {
-    Ooct.shuffle();
+  for (int x = 120; x != 150; oOct.append(++x)) {
+    oOct.shuffle();
   }
 }
 /*
@@ -190,23 +190,23 @@ void regen() {
   G.shuffle();
   O.shuffle();
   //shuffle the IntLists
-  Bbin.shuffle();
-  Ibin.shuffle();
-  Nbin.shuffle();
-  Gbin.shuffle();
-  Obin.shuffle();
+  bBin.shuffle();
+  iBin.shuffle();
+  nBin.shuffle();
+  gBin.shuffle();
+  oBin.shuffle();
   //shuffle the IntLists
-  Boct.shuffle();
-  Ioct.shuffle();
-  Noct.shuffle();
-  Goct.shuffle();
-  Ooct.shuffle();
+  bOct.shuffle();
+  iOct.shuffle();
+  nOct.shuffle();
+  gOct.shuffle();
+  oOct.shuffle();
   //shuffle the IntLists
-  Bhex.shuffle();
-  Ihex.shuffle();
-  Nhex.shuffle();
-  Ghex.shuffle();
-  Ohex.shuffle();
+  bHex.shuffle();
+  iHex.shuffle();
+  nHex.shuffle();
+  gHex.shuffle();
+  oHex.shuffle();
 }
 /*
 if the octal function is selected, it will display octalConvert().
@@ -237,27 +237,27 @@ void octalConvert() {
     int textY = 150;
     textSize(32);
     for (int i = 0; i < 5; i++) {
-      text(Integer.toOctalString(Boct.get(i)), 140, textY);
+      text(Integer.toOctalString(bOct.get(i)), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Integer.toOctalString(Ioct.get(j)), 220, textY);
+      text(Integer.toOctalString(iOct.get(j)), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Integer.toOctalString(Noct.get(j)), 300, textY);
+      text(Integer.toOctalString(nOct.get(j)), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Integer.toOctalString(Goct.get(j)), 380, textY);
+      text(Integer.toOctalString(gOct.get(j)), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Integer.toOctalString(Ooct.get(j)), 460, textY);
+      text(Integer.toOctalString(oOct.get(j)), 460, textY);
       textY += 80;
     }
     free(); //Add "FREE" tile in the centre.
@@ -292,27 +292,27 @@ void hexaConvert() {
     int textY = 150;
     textSize(32);
     for (int i = 0; i < 5; i++) {
-      text(hex((byte) Bhex.get(i)), 140, textY);
+      text(hex((byte) bHex.get(i)), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(hex((byte) Ihex.get(j)), 220, textY);
+      text(hex((byte) iHex.get(j)), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(hex((byte) Nhex.get(j)), 300, textY);
+      text(hex((byte) nHex.get(j)), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(hex((byte) Ghex.get(j)), 380, textY);
+      text(hex((byte) gHex.get(j)), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(hex((byte) Ohex.get(j)), 460, textY);
+      text(hex((byte) oHex.get(j)), 460, textY);
       textY += 80;
     }
 
@@ -348,27 +348,27 @@ void binaryConvert() {
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
-      text(binary(Bbin.get(i), 6), 140, textY);
+      text(binary(bBin.get(i), 6), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(binary(Ibin.get(j), 6), 220, textY);
+      text(binary(iBin.get(j), 6), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(binary(Nbin.get(j), 6), 300, textY);
+      text(binary(nBin.get(j), 6), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(binary(Gbin.get(j), 6), 380, textY);
+      text(binary(gBin.get(j), 6), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(binary(Obin.get(j), 6), 460, textY);
+      text(binary(oBin.get(j), 6), 460, textY);
       textY += 80;
     }
 
