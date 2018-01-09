@@ -18,7 +18,10 @@ Assignment #3
 ## Getting Started
 
 Download the .pde files and run it on your own computer.
-Make sure to set up the correct file paths for proper output.
+Make sure to set up the correct file paths for proper output!
+
+Navigate to `line #437` (Option to output to .PDF) and change the path to desired folder.
+In `pdfCollate` if statement, change the file path and/or file name to match line #437.
 
 ### Prerequisites
 
@@ -27,6 +30,9 @@ Required software.
 ```
 Processing version 3 (newest version is preferred).
 ```
+## Bug Reporting
+
+Please report any errors or bugs you encounter [here](https://github.com/KevinLu/bingo/issues).
 
 ## Built With
 
