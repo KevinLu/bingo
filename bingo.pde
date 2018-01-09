@@ -47,21 +47,11 @@ IntList Ioct = new IntList();
 IntList Noct = new IntList();
 IntList Goct = new IntList();
 IntList Ooct = new IntList();
-String[] Bbinary = new String[5];
-String[] Ibinary = new String[5];
-String[] Nbinary = new String[5];
-String[] Gbinary = new String[5];
-String[] Obinary = new String[5];
 String[] Bhexa = new String[5];
 String[] Ihexa = new String[5];
 String[] Nhexa = new String[5];
 String[] Ghexa = new String[5];
 String[] Ohexa = new String[5];
-String[] Bocta = new String[5];
-String[] Iocta = new String[5];
-String[] Nocta = new String[5];
-String[] Gocta = new String[5];
-String[] Oocta = new String[5];
 
 boolean middle = true;
 boolean binaryConverted = false;
@@ -205,6 +195,12 @@ void regen() {
   G.shuffle();
   O.shuffle();
   //shuffle the IntLists
+  Bbin.shuffle();
+  Ibin.shuffle();
+  Nbin.shuffle();
+  Gbin.shuffle();
+  Obin.shuffle();
+  //shuffle the IntLists
   Boct.shuffle();
   Ioct.shuffle();
   Noct.shuffle();
@@ -222,13 +218,6 @@ if the octal function is selected, it will display octalConvert().
 This is an almost identical copy of the draw() but it changes the decimal to octal.
 */
 void octalConvert() {
-  for (int i = 0; i < 5; i++) {
-    Bocta[i] = Integer.toOctalString(Boct.get(i));
-    Iocta[i] = Integer.toOctalString(Ioct.get(i));
-    Nocta[i] = Integer.toOctalString(Noct.get(i));
-    Gocta[i] = Integer.toOctalString(Goct.get(i));
-    Oocta[i] = Integer.toOctalString(Ooct.get(i));
-  }
   if (octalConverted) {
     background(255);
     bingoCard();
@@ -253,27 +242,27 @@ void octalConvert() {
     int textY = 150;
     textSize(32);
     for (int i = 0; i < 5; i++) {
-      text(Bocta[i], 140, textY);
+      text(Integer.toOctalString(Boct.get(i)), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Iocta[j], 220, textY);
+      text(Integer.toOctalString(Ioct.get(j)), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Nocta[j], 300, textY);
+      text(Integer.toOctalString(Noct.get(j)), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Gocta[j], 380, textY);
+      text(Integer.toOctalString(Goct.get(j)), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Oocta[j], 460, textY);
+      text(Integer.toOctalString(Ooct.get(j)), 460, textY);
       textY += 80;
     }
     free(); //Add "FREE" tile in the centre.
@@ -297,30 +286,45 @@ void hexaConvert() {
     textFont(font);
     text("Hexadecimal Bingo", width/2, 25);
     textFont(def);
+    int bingoOffset = 140;
+    for (int i = 0; i < 5; i++) {
+      textSize(32);
+      textAlign(CENTER);
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 150;
+    }
     int textY = 150;
     textSize(32);
     for (int i = 0; i < 5; i++) {
-      text(Bhexa[i], 140, textY);
+      text(hex((byte) Bhex.get(i)), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ihexa[j], 220, textY);
+      text(hex((byte) Ihex.get(j)), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Nhexa[j], 300, textY);
+      text(hex((byte) Nhex.get(j)), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ghexa[j], 380, textY);
+      text(hex((byte) Ghex.get(j)), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ohexa[j], 460, textY);
+      text(hex((byte) Ohex.get(j)), 460, textY);
       textY += 80;
     }
 
@@ -332,43 +336,51 @@ if the binary function is selected, it will display binaryConvert().
 This is an almost identical copy of the draw() but it changes the decimal to binary.
 */
 void binaryConvert() {
-  for (int i = 0; i < 5; i++) {
-    Bbinary[i] = binary(Bbin.get(i), 5);
-    Ibinary[i] = binary(Ibin.get(i), 5);
-    Nbinary[i] = binary(Nbin.get(i), 5);
-    Gbinary[i] = binary(Gbin.get(i), 5);
-    Obinary[i] = binary(Obin.get(i), 5);
-  }
   if (binaryConverted) {
     background(255);
     bingoCard();
     textFont(font);
     text("Binary Bingo", width/2, 25);
     textFont(def);
+    int bingoOffset = 140;
+    for (int i = 0; i < 5; i++) {
+      textSize(32);
+      textAlign(CENTER);
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 150;
+    }
     int textY = 150;
     textSize(24);
     for (int i = 0; i < 5; i++) {
-      text(Bbinary[i], 140, textY);
+      text(binary(Bbin.get(i), 6), 140, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Ibinary[j], 220, textY);
+      text(binary(Ibin.get(j), 6), 220, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Nbinary[j], 300, textY);
+      text(binary(Nbin.get(j), 6), 300, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Gbinary[j], 380, textY);
+      text(binary(Gbin.get(j), 6), 380, textY);
       textY += 80;
     }
     textY = 150;
     for (int j = 0; j < 5; j++) {
-      text(Obinary[j], 460, textY);
+      text(binary(Obin.get(j), 6), 460, textY);
       textY += 80;
     }
 
@@ -388,6 +400,21 @@ void draw () {
   fill(0);
   text("Decimal Bingo", width/2, 25);
   textFont(def);
+  int bingoOffset = 140;
+    for (int i = 0; i < 5; i++) {
+      textSize(32);
+      textAlign(CENTER);
+      text("B", bingoOffset, 85);
+      bingoOffset += 80;
+      text("I", bingoOffset, 85);
+      bingoOffset += 80;
+      text("N", bingoOffset, 85);
+      bingoOffset += 80;
+      text("G", bingoOffset, 85);
+      bingoOffset += 80;
+      text("O", bingoOffset, 85);
+      bingoOffset += 150;
+    }
   int textY = 150;
   for (int i = 0; i < 5; i++) {
     text(B.get(i), 140, textY);
